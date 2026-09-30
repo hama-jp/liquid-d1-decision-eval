@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-30T12:33:13.106860+00:00",
+  "dataset": "private-decisions-v5",
+  "status": "frozen_before_first_hard_request",
+  "canonical": 552,
+  "paired_variants": 120,
+  "hashes": {
+    "history.py": "01effc146cae544e1a3f4cc2f540f24d7093120e968b3ba799f04ebfb709ff2f",
+    "client.py": "4a04753385e0c6efd1c97a29db096961be208825d92c8c39d7e10708dd469fa6",
+    "run_suite.py": "87cff0765d2198b00b0d9b5acb19e39025b9077fa494742b4e6e498179f890e2",
+    "hard_oracle.py": "ea162dd115d0a17217037ae76a7c9660c27352540b3718ce5f413d9b212800f7",
+    "hardbench.py": "f004d175b0b426f3fcd220ae03e2fa8a9e0dee9c119ecf8172027b3e248cc970",
+    "dataset/private-decisions-v5/validation.json": "8d83d8d8f80d8cd5b0c29e38aacad41ba777232a39147ef25e7056e11d808b1a",
+    "dataset/private-decisions-v5/items.jsonl": "ae041f64200422422f8cb1b3307c579a697ed10ca11e9b528bec4e7e1d0f6f60",
+    "dataset/private-decisions-v5/review-examples.json": "e49a7c6d40a0d0a342825c92d263798f9a02362975c5df95d9806acbbdb9842b",
+    "dataset/private-decisions-v5/public-inputs.jsonl": "e00a2925ff3678d3468514e65d8eb4d08f1710bb41c8ad7893f7e4309233ca6a"
+  }
+}

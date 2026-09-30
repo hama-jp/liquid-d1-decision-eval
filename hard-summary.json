@@ -1,0 +1,1973 @@
+{
+  "canonical_completed": 552,
+  "canonical_planned": 552,
+  "variants_completed": 120,
+  "variants_planned": 120,
+  "transport_attempts": 673,
+  "transport_statuses": {
+    "200": 672,
+    "503": 1
+  },
+  "invalid_200_count": 0,
+  "primary": [
+    {
+      "family": "policy",
+      "difficulty": "hard",
+      "language": "all",
+      "planned": 120,
+      "n": 120,
+      "correct": 66,
+      "accuracy": 0.55,
+      "wilson_95": [
+        0.4608154341968757,
+        0.6360826491612539
+      ],
+      "binomial_p_one_sided": 2.3855008455112967e-12,
+      "mean_p_gold": 0.5327570409888831,
+      "mean_brier": 0.6290576030068892,
+      "holm_adjusted_p": 4.771001691022593e-12,
+      "above_chance_familywise_05": true
+    },
+    {
+      "family": "temporal",
+      "difficulty": "hard",
+      "language": "all",
+      "planned": 120,
+      "n": 120,
+      "correct": 32,
+      "accuracy": 0.26666666666666666,
+      "wilson_95": [
+        0.19568455046725244,
+        0.352124393861476
+      ],
+      "binomial_p_one_sided": 0.3699998535946751,
+      "mean_p_gold": 0.2670041132832934,
+      "mean_brier": 0.7821620698156136,
+      "holm_adjusted_p": 0.3699998535946751,
+      "above_chance_familywise_05": false
+    },
+    {
+      "family": "schedule",
+      "difficulty": "hard",
+      "language": "all",
+      "planned": 120,
+      "n": 120,
+      "correct": 68,
+      "accuracy": 0.5666666666666667,
+      "wilson_95": [
+        0.47729920885539046,
+        0.6518982356221157
+      ],
+      "binomial_p_one_sided": 1.6273070237146603e-13,
+      "mean_p_gold": 0.4411021168503532,
+      "mean_brier": 0.600024958812673,
+      "holm_adjusted_p": 4.881921071143981e-13,
+      "above_chance_familywise_05": true
+    }
+  ],
+  "all_cells": [
+    {
+      "family": "policy",
+      "difficulty": "easy",
+      "language": "all",
+      "planned": 32,
+      "n": 32,
+      "correct": 29,
+      "accuracy": 0.90625,
+      "wilson_95": [
+        0.7578184527161212,
+        0.9675984487016337
+      ],
+      "binomial_p_one_sided": 7.507070052398257e-15,
+      "mean_p_gold": 0.8446804586882006,
+      "mean_brier": 0.15660621167568803
+    },
+    {
+      "family": "policy",
+      "difficulty": "easy",
+      "language": "en",
+      "planned": 16,
+      "n": 16,
+      "correct": 15,
+      "accuracy": 0.9375,
+      "wilson_95": [
+        0.7167126242970107,
+        0.9888806552353576
+      ],
+      "binomial_p_one_sided": 1.1408701539039612e-08,
+      "mean_p_gold": 0.823318008092125,
+      "mean_brier": 0.18068335934417334
+    },
+    {
+      "family": "policy",
+      "difficulty": "easy",
+      "language": "ja",
+      "planned": 16,
+      "n": 16,
+      "correct": 14,
+      "accuracy": 0.875,
+      "wilson_95": [
+        0.639771727342413,
+        0.9650225122567595
+      ],
+      "binomial_p_one_sided": 2.628657966852188e-07,
+      "mean_p_gold": 0.8660429092842763,
+      "mean_brier": 0.13252906400720274
+    },
+    {
+      "family": "policy",
+      "difficulty": "medium",
+      "language": "all",
+      "planned": 32,
+      "n": 32,
+      "correct": 20,
+      "accuracy": 0.625,
+      "wilson_95": [
+        0.4525440735307745,
+        0.7706611269054578
+      ],
+      "binomial_p_one_sided": 7.984629901925538e-06,
+      "mean_p_gold": 0.6250429992581071,
+      "mean_brier": 0.4823021771972648
+    },
+    {
+      "family": "policy",
+      "difficulty": "medium",
+      "language": "en",
+      "planned": 16,
+      "n": 16,
+      "correct": 9,
+      "accuracy": 0.5625,
+      "wilson_95": [
+        0.331785563988119,
+        0.7690134759450765
+      ],
+      "binomial_p_one_sided": 0.0074697204399853945,
+      "mean_p_gold": 0.5296642587364269,
+      "mean_brier": 0.5973982089434521
+    },
+    {
+      "family": "policy",
+      "difficulty": "medium",
+      "language": "ja",
+      "planned": 16,
+      "n": 16,
+      "correct": 11,
+      "accuracy": 0.6875,
+      "wilson_95": [
+        0.44404355834740666,
+        0.8583535614521796
+      ],
+      "binomial_p_one_sided": 0.0002852391917258501,
+      "mean_p_gold": 0.7204217397797873,
+      "mean_brier": 0.3672061454510776
+    },
+    {
+      "family": "policy",
+      "difficulty": "hard",
+      "language": "all",
+      "planned": 120,
+      "n": 120,
+      "correct": 66,
+      "accuracy": 0.55,
+      "wilson_95": [
+        0.4608154341968757,
+        0.6360826491612539
+      ],
+      "binomial_p_one_sided": 2.3855008455112967e-12,
+      "mean_p_gold": 0.5327570409888831,
+      "mean_brier": 0.6290576030068892,
+      "holm_adjusted_p": 4.771001691022593e-12,
+      "above_chance_familywise_05": true
+    },
+    {
+      "family": "policy",
+      "difficulty": "hard",
+      "language": "en",
+      "planned": 60,
+      "n": 60,
+      "correct": 29,
+      "accuracy": 0.48333333333333334,
+      "wilson_95": [
+        0.36175049539732784,
+        0.6069218996740751
+      ],
+      "binomial_p_one_sided": 7.987737568222107e-05,
+      "mean_p_gold": 0.46766903349162536,
+      "mean_brier": 0.6913725577820863
+    },
+    {
+      "family": "policy",
+      "difficulty": "hard",
+      "language": "ja",
+      "planned": 60,
+      "n": 60,
+      "correct": 37,
+      "accuracy": 0.6166666666666667,
+      "wilson_95": [
+        0.49017595824099924,
+        0.7291172762591798
+      ],
+      "binomial_p_one_sided": 2.0663682310384355e-09,
+      "mean_p_gold": 0.5978450484861408,
+      "mean_brier": 0.5667426482316921
+    },
+    {
+      "family": "temporal",
+      "difficulty": "easy",
+      "language": "all",
+      "planned": 32,
+      "n": 32,
+      "correct": 9,
+      "accuracy": 0.28125,
+      "wilson_95": [
+        0.15564580497742764,
+        0.45374509425916565
+      ],
+      "binomial_p_one_sided": 0.4064883484973305,
+      "mean_p_gold": 0.3331312730778013,
+      "mean_brier": 0.9090669859282815
+    },
+    {
+      "family": "temporal",
+      "difficulty": "easy",
+      "language": "en",
+      "planned": 16,
+      "n": 16,
+      "correct": 3,
+      "accuracy": 0.1875,
+      "wilson_95": [
+        0.06591599071428142,
+        0.4300888096197414
+      ],
+      "binomial_p_one_sided": 0.8028889501001686,
+      "mean_p_gold": 0.2692360974661673,
+      "mean_brier": 1.0330703676666386
+    },
+    {
+      "family": "temporal",
+      "difficulty": "easy",
+      "language": "ja",
+      "planned": 16,
+      "n": 16,
+      "correct": 6,
+      "accuracy": 0.375,
+      "wilson_95": [
+        0.18481232558863633,
+        0.6135895945449727
+      ],
+      "binomial_p_one_sided": 0.1896545726340264,
+      "mean_p_gold": 0.3970264486894354,
+      "mean_brier": 0.7850636041899243
+    },
+    {
+      "family": "temporal",
+      "difficulty": "medium",
+      "language": "all",
+      "planned": 32,
+      "n": 32,
+      "correct": 7,
+      "accuracy": 0.21875,
+      "wilson_95": [
+        0.11023836252604186,
+        0.3875499364924353
+      ],
+      "binomial_p_one_sided": 0.722128334617797,
+      "mean_p_gold": 0.25340764046163156,
+      "mean_brier": 0.9028033998362812
+    },
+    {
+      "family": "temporal",
+      "difficulty": "medium",
+      "language": "en",
+      "planned": 16,
+      "n": 16,
+      "correct": 5,
+      "accuracy": 0.3125,
+      "wilson_95": [
+        0.14164643854782039,
+        0.5559564416525933
+      ],
+      "binomial_p_one_sided": 0.36981382477097213,
+      "mean_p_gold": 0.2906910733095743,
+      "mean_brier": 0.8336540976476227
+    },
+    {
+      "family": "temporal",
+      "difficulty": "medium",
+      "language": "ja",
+      "planned": 16,
+      "n": 16,
+      "correct": 2,
+      "accuracy": 0.125,
+      "wilson_95": [
+        0.03497748774324047,
+        0.36022827265758695
+      ],
+      "binomial_p_one_sided": 0.9365235602017492,
+      "mean_p_gold": 0.21612420761368878,
+      "mean_brier": 0.9719527020249398
+    },
+    {
+      "family": "temporal",
+      "difficulty": "hard",
+      "language": "all",
+      "planned": 120,
+      "n": 120,
+      "correct": 32,
+      "accuracy": 0.26666666666666666,
+      "wilson_95": [
+        0.19568455046725244,
+        0.352124393861476
+      ],
+      "binomial_p_one_sided": 0.3699998535946751,
+      "mean_p_gold": 0.2670041132832934,
+      "mean_brier": 0.7821620698156136,
+      "holm_adjusted_p": 0.3699998535946751,
+      "above_chance_familywise_05": false
+    },
+    {
+      "family": "temporal",
+      "difficulty": "hard",
+      "language": "en",
+      "planned": 60,
+      "n": 60,
+      "correct": 15,
+      "accuracy": 0.25,
+      "wilson_95": [
+        0.15776522530056675,
+        0.37232070077047824
+      ],
+      "binomial_p_one_sided": 0.5494307296471755,
+      "mean_p_gold": 0.26995186004142646,
+      "mean_brier": 0.7674610183006827
+    },
+    {
+      "family": "temporal",
+      "difficulty": "hard",
+      "language": "ja",
+      "planned": 60,
+      "n": 60,
+      "correct": 17,
+      "accuracy": 0.2833333333333333,
+      "wilson_95": [
+        0.18506828428432714,
+        0.4076728516439118
+      ],
+      "binomial_p_one_sided": 0.320363970712311,
+      "mean_p_gold": 0.2640563665251604,
+      "mean_brier": 0.7968631213305446
+    },
+    {
+      "family": "schedule",
+      "difficulty": "easy",
+      "language": "all",
+      "planned": 32,
+      "n": 32,
+      "correct": 23,
+      "accuracy": 0.71875,
+      "wilson_95": [
+        0.5462549057408342,
+        0.8443541950225723
+      ],
+      "binomial_p_one_sided": 3.410731025675672e-08,
+      "mean_p_gold": 0.6080978019080182,
+      "mean_brier": 0.43238454344497346
+    },
+    {
+      "family": "schedule",
+      "difficulty": "easy",
+      "language": "en",
+      "planned": 16,
+      "n": 16,
+      "correct": 9,
+      "accuracy": 0.5625,
+      "wilson_95": [
+        0.331785563988119,
+        0.7690134759450765
+      ],
+      "binomial_p_one_sided": 0.0074697204399853945,
+      "mean_p_gold": 0.5088488010425637,
+      "mean_brier": 0.6509353826743658
+    },
+    {
+      "family": "schedule",
+      "difficulty": "easy",
+      "language": "ja",
+      "planned": 16,
+      "n": 16,
+      "correct": 14,
+      "accuracy": 0.875,
+      "wilson_95": [
+        0.639771727342413,
+        0.9650225122567595
+      ],
+      "binomial_p_one_sided": 2.628657966852188e-07,
+      "mean_p_gold": 0.7073468027734726,
+      "mean_brier": 0.21383370421558115
+    },
+    {
+      "family": "schedule",
+      "difficulty": "medium",
+      "language": "all",
+      "planned": 32,
+      "n": 32,
+      "correct": 20,
+      "accuracy": 0.625,
+      "wilson_95": [
+        0.4525440735307745,
+        0.7706611269054578
+      ],
+      "binomial_p_one_sided": 7.984629901925538e-06,
+      "mean_p_gold": 0.45947642606069905,
+      "mean_brier": 0.5193373553119046
+    },
+    {
+      "family": "schedule",
+      "difficulty": "medium",
+      "language": "en",
+      "planned": 16,
+      "n": 16,
+      "correct": 10,
+      "accuracy": 0.625,
+      "wilson_95": [
+        0.38641040545502714,
+        0.8151876744113636
+      ],
+      "binomial_p_one_sided": 0.0016444653738290071,
+      "mean_p_gold": 0.5033822434653208,
+      "mean_brier": 0.4687105888246565
+    },
+    {
+      "family": "schedule",
+      "difficulty": "medium",
+      "language": "ja",
+      "planned": 16,
+      "n": 16,
+      "correct": 10,
+      "accuracy": 0.625,
+      "wilson_95": [
+        0.38641040545502714,
+        0.8151876744113636
+      ],
+      "binomial_p_one_sided": 0.0016444653738290071,
+      "mean_p_gold": 0.41557060865607726,
+      "mean_brier": 0.5699641217991527
+    },
+    {
+      "family": "schedule",
+      "difficulty": "hard",
+      "language": "all",
+      "planned": 120,
+      "n": 120,
+      "correct": 68,
+      "accuracy": 0.5666666666666667,
+      "wilson_95": [
+        0.47729920885539046,
+        0.6518982356221157
+      ],
+      "binomial_p_one_sided": 1.6273070237146603e-13,
+      "mean_p_gold": 0.4411021168503532,
+      "mean_brier": 0.600024958812673,
+      "holm_adjusted_p": 4.881921071143981e-13,
+      "above_chance_familywise_05": true
+    },
+    {
+      "family": "schedule",
+      "difficulty": "hard",
+      "language": "en",
+      "planned": 60,
+      "n": 60,
+      "correct": 32,
+      "accuracy": 0.5333333333333333,
+      "wilson_95": [
+        0.4089342702715789,
+        0.6537209395856151
+      ],
+      "binomial_p_one_sided": 2.466413909265686e-06,
+      "mean_p_gold": 0.4403383607783506,
+      "mean_brier": 0.6425653340736323
+    },
+    {
+      "family": "schedule",
+      "difficulty": "hard",
+      "language": "ja",
+      "planned": 60,
+      "n": 60,
+      "correct": 36,
+      "accuracy": 0.6,
+      "wilson_95": [
+        0.4736605349204075,
+        0.7143050946511744
+      ],
+      "binomial_p_one_sided": 9.726648572644307e-09,
+      "mean_p_gold": 0.44186587292235585,
+      "mean_brier": 0.5574845835517139
+    }
+  ],
+  "robustness": [
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "n": 20,
+      "flips": 3,
+      "correct_to_wrong": 1,
+      "wrong_to_correct": 2
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "n": 20,
+      "flips": 6,
+      "correct_to_wrong": 2,
+      "wrong_to_correct": 3
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "n": 20,
+      "flips": 4,
+      "correct_to_wrong": 3,
+      "wrong_to_correct": 0
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "n": 20,
+      "flips": 6,
+      "correct_to_wrong": 2,
+      "wrong_to_correct": 2
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "n": 20,
+      "flips": 8,
+      "correct_to_wrong": 4,
+      "wrong_to_correct": 3
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "n": 20,
+      "flips": 3,
+      "correct_to_wrong": 1,
+      "wrong_to_correct": 1
+    }
+  ],
+  "paired_details": [
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-004",
+      "case_id": "policy-hard-en-004-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.023646269306921375
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-008",
+      "case_id": "policy-hard-en-008-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.02937374170772243
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-002",
+      "case_id": "policy-hard-ja-002-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.05618090826262819
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-003",
+      "case_id": "policy-hard-ja-003-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.004363683446323985
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-006",
+      "case_id": "policy-hard-ja-006-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.06579745511508084
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-001",
+      "case_id": "temporal-hard-ja-001-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.010734690811373737
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-005",
+      "case_id": "schedule-hard-ja-005-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.06601928824371142
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-008",
+      "case_id": "policy-hard-ja-008-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 9.26738770551383e-05
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-009",
+      "case_id": "policy-hard-en-009-translation",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.5465389294083047
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-001",
+      "case_id": "policy-hard-en-001-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.1484672648516684
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-003",
+      "case_id": "schedule-hard-en-003-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.20155058392985858
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-001",
+      "case_id": "schedule-hard-ja-001-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.13561462610972663
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-004",
+      "case_id": "schedule-hard-ja-004-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.11334761197313309
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-001",
+      "case_id": "policy-hard-en-001-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.09218994756339127
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-004",
+      "case_id": "schedule-hard-en-004-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.3944058174047205
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-003",
+      "case_id": "policy-hard-ja-003-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.07306435402181599
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-007",
+      "case_id": "temporal-hard-ja-007-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.14759963354465172
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-000",
+      "case_id": "temporal-hard-ja-000-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.0030331630665829945
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-002",
+      "case_id": "schedule-hard-ja-002-reverse",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.5845258347921365
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-001",
+      "case_id": "schedule-hard-ja-001-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.052945807589495186
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-006",
+      "case_id": "policy-hard-ja-006-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.08951879051528089
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-000",
+      "case_id": "schedule-hard-ja-000-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.16797612547023888
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-001",
+      "case_id": "temporal-hard-en-001-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.05311566373690612
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-003",
+      "case_id": "schedule-hard-ja-003-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.02037149892570178
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-009",
+      "case_id": "policy-hard-ja-009-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.00250514554221881
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-001",
+      "case_id": "policy-hard-ja-001-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.08092664045676459
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-004",
+      "case_id": "temporal-hard-ja-004-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.10871072812972349
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-002",
+      "case_id": "schedule-hard-en-002-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.33601122104221326
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-007",
+      "case_id": "schedule-hard-ja-007-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.2323684111738595
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-005",
+      "case_id": "temporal-hard-ja-005-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.018402407176257962
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-003",
+      "case_id": "temporal-hard-en-003-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.08092296190183085
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-005",
+      "case_id": "policy-hard-ja-005-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.013376971532657267
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-002",
+      "case_id": "temporal-hard-en-002-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.0729463260539957
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-005",
+      "case_id": "temporal-hard-ja-005-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.021191287240203527
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-006",
+      "case_id": "temporal-hard-en-006-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.028802652343856205
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-003",
+      "case_id": "policy-hard-en-003-reverse",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.21323878995368906
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-009",
+      "case_id": "schedule-hard-en-009-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.3675486812712775
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-000",
+      "case_id": "schedule-hard-ja-000-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.2625919367223454
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-008",
+      "case_id": "policy-hard-ja-008-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.000787391543948468
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-007",
+      "case_id": "policy-hard-en-007-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.1387158351464296
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-001",
+      "case_id": "schedule-hard-en-001-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.16950903193410471
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-002",
+      "case_id": "schedule-hard-en-002-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.06794193085084999
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-006",
+      "case_id": "schedule-hard-ja-006-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.35109464502844256
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-004",
+      "case_id": "schedule-hard-en-004-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.694341426773287
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-009",
+      "case_id": "policy-hard-en-009-reverse",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.02089757714629331
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-009",
+      "case_id": "schedule-hard-ja-009-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.05822125519090421
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-008",
+      "case_id": "temporal-hard-en-008-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.01717724795382526
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-007",
+      "case_id": "policy-hard-ja-007-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.049364500538491285
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-006",
+      "case_id": "temporal-hard-en-006-translation",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.1386135913133317
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-002",
+      "case_id": "schedule-hard-ja-002-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.042525605292825924
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-005",
+      "case_id": "policy-hard-en-005-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.09224617528626039
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-000",
+      "case_id": "temporal-hard-en-000-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.00010682502407738381
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-008",
+      "case_id": "policy-hard-en-008-translation",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.4840804022591517
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-007",
+      "case_id": "temporal-hard-en-007-translation",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.27013598252298165
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-009",
+      "case_id": "policy-hard-ja-009-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.0002670996206298557
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-000",
+      "case_id": "policy-hard-ja-000-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.15350216468996758
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-004",
+      "case_id": "policy-hard-en-004-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.3768068889351969
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-000",
+      "case_id": "policy-hard-en-000-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.011283521202201288
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-003",
+      "case_id": "temporal-hard-en-003-translation",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.06707802069224206
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-007",
+      "case_id": "temporal-hard-ja-007-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.22056232869457743
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-003",
+      "case_id": "schedule-hard-ja-003-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.10074035113061297
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-005",
+      "case_id": "temporal-hard-en-005-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.12041995744071654
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-001",
+      "case_id": "policy-hard-ja-001-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.003244175834306154
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-002",
+      "case_id": "temporal-hard-en-002-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.00895182617977433
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-000",
+      "case_id": "temporal-hard-en-000-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.06714248169232631
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-002",
+      "case_id": "policy-hard-ja-002-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.00027374273584983977
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-001",
+      "case_id": "temporal-hard-ja-001-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.022440601478371236
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-006",
+      "case_id": "policy-hard-en-006-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.09082570420257417
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-000",
+      "case_id": "schedule-hard-en-000-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.3276537963659393
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-005",
+      "case_id": "temporal-hard-en-005-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.07054325131763542
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-001",
+      "case_id": "schedule-hard-en-001-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.1384312894642934
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-006",
+      "case_id": "schedule-hard-en-006-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.08915684265056631
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-000",
+      "case_id": "policy-hard-en-000-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.001474327184977347
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-009",
+      "case_id": "temporal-hard-ja-009-translation",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.16037093785938344
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-007",
+      "case_id": "temporal-hard-en-007-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.030701845601247682
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-006",
+      "case_id": "schedule-hard-ja-006-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.07280381211434017
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-009",
+      "case_id": "temporal-hard-en-009-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.10906544916843691
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-002",
+      "case_id": "temporal-hard-ja-002-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.16526785822198292
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-004",
+      "case_id": "policy-hard-ja-004-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.06241715486687871
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-006",
+      "case_id": "policy-hard-en-006-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.04649262099101667
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-005",
+      "case_id": "policy-hard-ja-005-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.1853953600546593
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-005",
+      "case_id": "policy-hard-en-005-translation",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.29768868067929505
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-008",
+      "case_id": "temporal-hard-ja-008-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.02558119918866794
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-007",
+      "case_id": "schedule-hard-en-007-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.10445695268495694
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-005",
+      "case_id": "schedule-hard-en-005-reverse",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.3314806702472552
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-004",
+      "case_id": "temporal-hard-en-004-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.09482821417653206
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-ja-008",
+      "case_id": "schedule-hard-ja-008-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.064680856112876
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-006",
+      "case_id": "temporal-hard-ja-006-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.01182761781276559
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-002",
+      "case_id": "policy-hard-en-002-translation",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.2804334372138021
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-003",
+      "case_id": "temporal-hard-ja-003-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.040952097910200574
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-007",
+      "case_id": "schedule-hard-ja-007-translation",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.18375295647537732
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-003",
+      "case_id": "policy-hard-en-003-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.3153245526106411
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-006",
+      "case_id": "temporal-hard-ja-006-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.04420732417722893
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-009",
+      "case_id": "schedule-hard-en-009-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.16731997023094347
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-004",
+      "case_id": "schedule-hard-ja-004-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.11618647192605801
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-004",
+      "case_id": "temporal-hard-ja-004-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.1725913890258915
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-009",
+      "case_id": "temporal-hard-ja-009-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.006998437560017667
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-007",
+      "case_id": "schedule-hard-en-007-reverse",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.4301173602891025
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-008",
+      "case_id": "temporal-hard-en-008-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.009668623199016513
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-008",
+      "case_id": "schedule-hard-en-008-translation",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.30649148626955725
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-ja-004",
+      "case_id": "policy-hard-ja-004-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.03955364984332074
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-005",
+      "case_id": "schedule-hard-ja-005-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.07192971245106505
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-007",
+      "case_id": "policy-hard-ja-007-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.05816450612148316
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-000",
+      "case_id": "schedule-hard-en-000-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.05623381483546963
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-003",
+      "case_id": "temporal-hard-ja-003-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.03878891015232527
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-000",
+      "case_id": "temporal-hard-ja-000-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.059884608468679365
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-006",
+      "case_id": "schedule-hard-en-006-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.08058039068739281
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-en-002",
+      "case_id": "policy-hard-en-002-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.3385149042797809
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-ja-002",
+      "case_id": "temporal-hard-ja-002-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.09148775640651008
+    },
+    {
+      "family": "policy",
+      "variant": "translation",
+      "base_id": "policy-hard-en-007",
+      "case_id": "policy-hard-en-007-translation",
+      "base_correct": true,
+      "variant_correct": false,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.4603577349506797
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-ja-008",
+      "case_id": "temporal-hard-ja-008-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.03256020476716806
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-003",
+      "case_id": "schedule-hard-en-003-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.08722405581909409
+    },
+    {
+      "family": "policy",
+      "variant": "reverse",
+      "base_id": "policy-hard-ja-000",
+      "case_id": "policy-hard-ja-000-reverse",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.052141061630001206
+    },
+    {
+      "family": "temporal",
+      "variant": "reverse",
+      "base_id": "temporal-hard-en-009",
+      "case_id": "temporal-hard-en-009-reverse",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 8.381713510613453e-05
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-009",
+      "case_id": "schedule-hard-ja-009-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.12336689007533547
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-ja-008",
+      "case_id": "schedule-hard-ja-008-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.25098156126605076
+    },
+    {
+      "family": "schedule",
+      "variant": "reverse",
+      "base_id": "schedule-hard-en-008",
+      "case_id": "schedule-hard-en-008-reverse",
+      "base_correct": false,
+      "variant_correct": true,
+      "choice_flipped": true,
+      "absolute_p_gold_change": 0.23692762650138222
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-004",
+      "case_id": "temporal-hard-en-004-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.051324691457368926
+    },
+    {
+      "family": "schedule",
+      "variant": "translation",
+      "base_id": "schedule-hard-en-005",
+      "case_id": "schedule-hard-en-005-translation",
+      "base_correct": true,
+      "variant_correct": true,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.06448361905037242
+    },
+    {
+      "family": "temporal",
+      "variant": "translation",
+      "base_id": "temporal-hard-en-001",
+      "case_id": "temporal-hard-en-001-translation",
+      "base_correct": false,
+      "variant_correct": false,
+      "choice_flipped": false,
+      "absolute_p_gold_change": 0.08174796773804051
+    }
+  ],
+  "confident_errors": [
+    {
+      "id": "temporal-easy-en-008",
+      "family": "temporal",
+      "probability": 0.9951184735683388,
+      "gold": "D",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-en-000-translation",
+      "family": "policy",
+      "probability": 0.993953436076452,
+      "gold": "B",
+      "choice": "D"
+    },
+    {
+      "id": "policy-hard-en-000",
+      "family": "policy",
+      "probability": 0.992901553074222,
+      "gold": "B",
+      "choice": "D"
+    },
+    {
+      "id": "policy-hard-ja-001-reverse",
+      "family": "policy",
+      "probability": 0.9893318287503595,
+      "gold": "D",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-ja-010",
+      "family": "policy",
+      "probability": 0.9859040842594627,
+      "gold": "B",
+      "choice": "C"
+    },
+    {
+      "id": "policy-medium-ja-005",
+      "family": "policy",
+      "probability": 0.9856744425026104,
+      "gold": "B",
+      "choice": "C"
+    },
+    {
+      "id": "temporal-easy-en-005",
+      "family": "temporal",
+      "probability": 0.9856049417899878,
+      "gold": "A",
+      "choice": "C"
+    },
+    {
+      "id": "policy-hard-ja-011",
+      "family": "policy",
+      "probability": 0.9824534290765667,
+      "gold": "C",
+      "choice": "D"
+    },
+    {
+      "id": "policy-hard-en-000-reverse",
+      "family": "policy",
+      "probability": 0.9813274950606493,
+      "gold": "C",
+      "choice": "A"
+    },
+    {
+      "id": "schedule-easy-en-011",
+      "family": "schedule",
+      "probability": 0.9774268764979612,
+      "gold": "A",
+      "choice": "C"
+    },
+    {
+      "id": "policy-hard-en-018",
+      "family": "policy",
+      "probability": 0.974213951309132,
+      "gold": "A",
+      "choice": "C"
+    },
+    {
+      "id": "policy-hard-ja-037",
+      "family": "policy",
+      "probability": 0.9736648464329125,
+      "gold": "B",
+      "choice": "C"
+    },
+    {
+      "id": "temporal-easy-ja-001",
+      "family": "temporal",
+      "probability": 0.9667124878559945,
+      "gold": "B",
+      "choice": "C"
+    },
+    {
+      "id": "policy-easy-en-008",
+      "family": "policy",
+      "probability": 0.9623794974204621,
+      "gold": "A",
+      "choice": "C"
+    },
+    {
+      "id": "policy-hard-ja-001",
+      "family": "policy",
+      "probability": 0.9515334256188611,
+      "gold": "A",
+      "choice": "C"
+    },
+    {
+      "id": "schedule-easy-en-010",
+      "family": "schedule",
+      "probability": 0.9473920187339723,
+      "gold": "A",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-ja-002-reverse",
+      "family": "policy",
+      "probability": 0.9460343479565431,
+      "gold": "A",
+      "choice": "D"
+    },
+    {
+      "id": "policy-hard-en-027",
+      "family": "policy",
+      "probability": 0.9343570580721318,
+      "gold": "A",
+      "choice": "D"
+    },
+    {
+      "id": "schedule-hard-en-011",
+      "family": "schedule",
+      "probability": 0.9326106946754211,
+      "gold": "A",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-ja-017",
+      "family": "policy",
+      "probability": 0.9317581771063802,
+      "gold": "B",
+      "choice": "D"
+    },
+    {
+      "id": "policy-medium-en-008",
+      "family": "policy",
+      "probability": 0.9313032890265207,
+      "gold": "C",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-ja-027",
+      "family": "policy",
+      "probability": 0.9308531938111705,
+      "gold": "A",
+      "choice": "C"
+    },
+    {
+      "id": "schedule-hard-ja-043",
+      "family": "schedule",
+      "probability": 0.9198731614464399,
+      "gold": "D",
+      "choice": "C"
+    },
+    {
+      "id": "schedule-hard-ja-059",
+      "family": "schedule",
+      "probability": 0.9193596845368708,
+      "gold": "C",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-ja-009-translation",
+      "family": "policy",
+      "probability": 0.9149784111391658,
+      "gold": "A",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-ja-002",
+      "family": "policy",
+      "probability": 0.9139645374099302,
+      "gold": "D",
+      "choice": "A"
+    },
+    {
+      "id": "temporal-easy-en-011",
+      "family": "temporal",
+      "probability": 0.9103807408316542,
+      "gold": "D",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-ja-009-reverse",
+      "family": "policy",
+      "probability": 0.9096887146612931,
+      "gold": "D",
+      "choice": "C"
+    },
+    {
+      "id": "policy-medium-en-013",
+      "family": "policy",
+      "probability": 0.9068389644074979,
+      "gold": "A",
+      "choice": "B"
+    },
+    {
+      "id": "policy-hard-en-037",
+      "family": "policy",
+      "probability": 0.9031658316250524,
+      "gold": "B",
+      "choice": "D"
+    }
+  ],
+  "notes": "Only first HTTP 200 responses scored; exact one-sided binomial against 25%; Holm across the three hard-family tests. Variants excluded from independent denominators."
+}

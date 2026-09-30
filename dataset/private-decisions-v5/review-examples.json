@@ -1,0 +1,6006 @@
+[
+  {
+    "id": "policy-easy-en-004",
+    "family": "policy",
+    "difficulty": "easy",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|policy|easy|en|4",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Fictional release policy. Among rules whose condition holds and exception does NOT hold, apply ONLY the rule with the largest numeric priority. Use the default if none applies. Use only the written policy, not outside conventions.",
+        "field_definitions": "error_percent: failed requests (%); healthy_replicas: working replicas; backup_age_hours: time since backup; open_incidents: active incidents; approved/security_alert: 1=true, 0=false.",
+        "facts": {
+          "error_percent": 90,
+          "healthy_replicas": 1,
+          "backup_age_hours": 65,
+          "open_incidents": 4,
+          "approved": 0,
+          "security_alert": 1
+        },
+        "rules": [
+          "Rule R6653 (priority 90): if open_incidents >= 2, action: Release to a small canary group. EXCEPTION: this rule does not apply if healthy_replicas >= 8.",
+          "Rule R3450 (priority 60): if security_alert = 1, action: Release to a small canary group. EXCEPTION: this rule does not apply if open_incidents >= 1.",
+          "Rule R1044 (priority 67): if backup_age_hours >= 10, action: Hold the release. EXCEPTION: this rule does not apply if error_percent < 84.",
+          "Rule R2583 (priority 11): if security_alert = 0, action: Release to all users. EXCEPTION: this rule does not apply if healthy_replicas >= 7."
+        ],
+        "default_action": "Roll back the release"
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Which action must be executed?",
+          "criteria": {
+            "A": "Hold the release",
+            "B": "Release to all users",
+            "C": "Release to a small canary group",
+            "D": "Roll back the release"
+          }
+        }
+      }
+    },
+    "gold_choice": "C",
+    "gold_internal": 1,
+    "option_internal_order": [
+      2,
+      0,
+      1,
+      3
+    ],
+    "abstract": {
+      "facts": {
+        "error_percent": 90,
+        "healthy_replicas": 1,
+        "backup_age_hours": 65,
+        "open_incidents": 4,
+        "approved": 0,
+        "security_alert": 1
+      },
+      "rules": [
+        {
+          "id": "R6653",
+          "priority": 90,
+          "when": {
+            "kind": "atom",
+            "field": "open_incidents",
+            "op": "ge",
+            "value": 2
+          },
+          "except": {
+            "kind": "atom",
+            "field": "healthy_replicas",
+            "op": "ge",
+            "value": 8
+          },
+          "action": 1
+        },
+        {
+          "id": "R3450",
+          "priority": 60,
+          "when": {
+            "kind": "atom",
+            "field": "security_alert",
+            "op": "eq",
+            "value": 1
+          },
+          "except": {
+            "kind": "atom",
+            "field": "open_incidents",
+            "op": "ge",
+            "value": 1
+          },
+          "action": 1
+        },
+        {
+          "id": "R1044",
+          "priority": 67,
+          "when": {
+            "kind": "atom",
+            "field": "backup_age_hours",
+            "op": "ge",
+            "value": 10
+          },
+          "except": {
+            "kind": "atom",
+            "field": "error_percent",
+            "op": "lt",
+            "value": 84
+          },
+          "action": 2
+        },
+        {
+          "id": "R2583",
+          "priority": 11,
+          "when": {
+            "kind": "atom",
+            "field": "security_alert",
+            "op": "eq",
+            "value": 0
+          },
+          "except": {
+            "kind": "atom",
+            "field": "healthy_replicas",
+            "op": "ge",
+            "value": 7
+          },
+          "action": 0
+        }
+      ],
+      "default": 3
+    },
+    "witness": {
+      "winning_rule": "R6653",
+      "checks": [
+        {
+          "id": "R6653",
+          "condition": true,
+          "exception": false,
+          "priority": 90,
+          "action": 1
+        },
+        {
+          "id": "R3450",
+          "condition": true,
+          "exception": true,
+          "priority": 60,
+          "action": 1
+        },
+        {
+          "id": "R1044",
+          "condition": true,
+          "exception": false,
+          "priority": 67,
+          "action": 2
+        },
+        {
+          "id": "R2583",
+          "condition": false,
+          "exception": false,
+          "priority": 11,
+          "action": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "policy-easy-ja-000",
+    "family": "policy",
+    "difficulty": "easy",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|policy|easy|ja|0",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "架空のサービスの公開規則。条件を満たし、適用除外に該当しない規則のうち、優先度の数値が最大の規則を1つだけ適用する。該当がなければ既定の操作。外部の慣習を追加せず、記載された規則だけで判断する。",
+        "field_definitions": "error_percent: エラー率（%）、healthy_replicas: 正常なレプリカ数、backup_age_hours: バックアップからの時間、open_incidents: 未解決障害数、approved/security_alert: 1が真、0が偽。",
+        "facts": {
+          "error_percent": 67,
+          "healthy_replicas": 0,
+          "backup_age_hours": 51,
+          "open_incidents": 5,
+          "approved": 0,
+          "security_alert": 1
+        },
+        "rules": [
+          "規則 R4261（優先度 22）: 条件 error_percent < 76 のとき「公開を保留する」。ただし approved = 1 のとき、この規則は適用しない。",
+          "規則 R2398（優先度 40）: 条件 backup_age_hours >= 20 のとき「公開をロールバックする」。ただし error_percent < 66 のとき、この規則は適用しない。",
+          "規則 R6836（優先度 56）: 条件 backup_age_hours >= 47 のとき「公開を保留する」。ただし open_incidents >= 1 のとき、この規則は適用しない。",
+          "規則 R5710（優先度 95）: 条件 error_percent >= 52 のとき「公開を保留する」。ただし healthy_replicas >= 3 のとき、この規則は適用しない。"
+        ],
+        "default_action": "小規模なカナリア群へ公開する"
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "実行すべき操作はどれですか。",
+          "criteria": {
+            "A": "全利用者へ公開する",
+            "B": "公開を保留する",
+            "C": "公開をロールバックする",
+            "D": "小規模なカナリア群へ公開する"
+          }
+        }
+      }
+    },
+    "gold_choice": "B",
+    "gold_internal": 2,
+    "option_internal_order": [
+      0,
+      2,
+      3,
+      1
+    ],
+    "abstract": {
+      "facts": {
+        "error_percent": 67,
+        "healthy_replicas": 0,
+        "backup_age_hours": 51,
+        "open_incidents": 5,
+        "approved": 0,
+        "security_alert": 1
+      },
+      "rules": [
+        {
+          "id": "R4261",
+          "priority": 22,
+          "when": {
+            "kind": "atom",
+            "field": "error_percent",
+            "op": "lt",
+            "value": 76
+          },
+          "except": {
+            "kind": "atom",
+            "field": "approved",
+            "op": "eq",
+            "value": 1
+          },
+          "action": 2
+        },
+        {
+          "id": "R2398",
+          "priority": 40,
+          "when": {
+            "kind": "atom",
+            "field": "backup_age_hours",
+            "op": "ge",
+            "value": 20
+          },
+          "except": {
+            "kind": "atom",
+            "field": "error_percent",
+            "op": "lt",
+            "value": 66
+          },
+          "action": 3
+        },
+        {
+          "id": "R6836",
+          "priority": 56,
+          "when": {
+            "kind": "atom",
+            "field": "backup_age_hours",
+            "op": "ge",
+            "value": 47
+          },
+          "except": {
+            "kind": "atom",
+            "field": "open_incidents",
+            "op": "ge",
+            "value": 1
+          },
+          "action": 2
+        },
+        {
+          "id": "R5710",
+          "priority": 95,
+          "when": {
+            "kind": "atom",
+            "field": "error_percent",
+            "op": "ge",
+            "value": 52
+          },
+          "except": {
+            "kind": "atom",
+            "field": "healthy_replicas",
+            "op": "ge",
+            "value": 3
+          },
+          "action": 2
+        }
+      ],
+      "default": 1
+    },
+    "witness": {
+      "winning_rule": "R5710",
+      "checks": [
+        {
+          "id": "R4261",
+          "condition": true,
+          "exception": false,
+          "priority": 22,
+          "action": 2
+        },
+        {
+          "id": "R2398",
+          "condition": true,
+          "exception": false,
+          "priority": 40,
+          "action": 3
+        },
+        {
+          "id": "R6836",
+          "condition": true,
+          "exception": true,
+          "priority": 56,
+          "action": 2
+        },
+        {
+          "id": "R5710",
+          "condition": true,
+          "exception": false,
+          "priority": 95,
+          "action": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "policy-medium-en-013",
+    "family": "policy",
+    "difficulty": "medium",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|policy|medium|en|13",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Fictional release policy. Among rules whose condition holds and exception does NOT hold, apply ONLY the rule with the largest numeric priority. Use the default if none applies. Use only the written policy, not outside conventions.",
+        "field_definitions": "error_percent: failed requests (%); healthy_replicas: working replicas; backup_age_hours: time since backup; open_incidents: active incidents; approved/security_alert: 1=true, 0=false.",
+        "facts": {
+          "error_percent": 32,
+          "healthy_replicas": 0,
+          "backup_age_hours": 19,
+          "open_incidents": 2,
+          "approved": 0,
+          "security_alert": 0
+        },
+        "rules": [
+          "Rule R6566 (priority 27): if (open_incidents < 5 OR error_percent < 33), action: Release to a small canary group. EXCEPTION: this rule does not apply if (open_incidents < 4 OR approved = 1).",
+          "Rule R3965 (priority 75): if (open_incidents >= 2 OR error_percent >= 45), action: Release to all users. EXCEPTION: this rule does not apply if (approved = 1 AND error_percent < 11).",
+          "Rule R1334 (priority 73): if (open_incidents >= 3 AND approved = 1), action: Release to all users. EXCEPTION: this rule does not apply if (healthy_replicas >= 3 AND error_percent >= 75).",
+          "Rule R3687 (priority 65): if (approved = 0 OR backup_age_hours < 20), action: Release to all users. EXCEPTION: this rule does not apply if (error_percent >= 27 OR healthy_replicas >= 4).",
+          "Rule R3686 (priority 72): if (backup_age_hours < 23 AND healthy_replicas < 3), action: Hold the release. EXCEPTION: this rule does not apply if (error_percent < 56 AND open_incidents < 2).",
+          "Rule R1530 (priority 56): if (healthy_replicas < 4 AND open_incidents >= 2), action: Roll back the release. EXCEPTION: this rule does not apply if (security_alert = 0 AND backup_age_hours >= 6)."
+        ],
+        "default_action": "Release to a small canary group"
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Which action must be executed?",
+          "criteria": {
+            "A": "Release to all users",
+            "B": "Hold the release",
+            "C": "Release to a small canary group",
+            "D": "Roll back the release"
+          }
+        }
+      }
+    },
+    "gold_choice": "A",
+    "gold_internal": 0,
+    "option_internal_order": [
+      0,
+      2,
+      1,
+      3
+    ],
+    "abstract": {
+      "facts": {
+        "error_percent": 32,
+        "healthy_replicas": 0,
+        "backup_age_hours": 19,
+        "open_incidents": 2,
+        "approved": 0,
+        "security_alert": 0
+      },
+      "rules": [
+        {
+          "id": "R6566",
+          "priority": 27,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 5
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 33
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 4
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "action": 1
+        },
+        {
+          "id": "R3965",
+          "priority": 75,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 2
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 45
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 11
+              }
+            ]
+          },
+          "action": 0
+        },
+        {
+          "id": "R1334",
+          "priority": 73,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 75
+              }
+            ]
+          },
+          "action": 0
+        },
+        {
+          "id": "R3687",
+          "priority": 65,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 20
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 27
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 4
+              }
+            ]
+          },
+          "action": 0
+        },
+        {
+          "id": "R3686",
+          "priority": 72,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 23
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 3
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 56
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 2
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R1530",
+          "priority": 56,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 4
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 2
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 6
+              }
+            ]
+          },
+          "action": 3
+        }
+      ],
+      "default": 1
+    },
+    "witness": {
+      "winning_rule": "R3965",
+      "checks": [
+        {
+          "id": "R6566",
+          "condition": true,
+          "exception": true,
+          "priority": 27,
+          "action": 1
+        },
+        {
+          "id": "R3965",
+          "condition": true,
+          "exception": false,
+          "priority": 75,
+          "action": 0
+        },
+        {
+          "id": "R1334",
+          "condition": false,
+          "exception": false,
+          "priority": 73,
+          "action": 0
+        },
+        {
+          "id": "R3687",
+          "condition": true,
+          "exception": true,
+          "priority": 65,
+          "action": 0
+        },
+        {
+          "id": "R3686",
+          "condition": true,
+          "exception": false,
+          "priority": 72,
+          "action": 2
+        },
+        {
+          "id": "R1530",
+          "condition": true,
+          "exception": true,
+          "priority": 56,
+          "action": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "policy-medium-ja-007",
+    "family": "policy",
+    "difficulty": "medium",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|policy|medium|ja|7",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "架空のサービスの公開規則。条件を満たし、適用除外に該当しない規則のうち、優先度の数値が最大の規則を1つだけ適用する。該当がなければ既定の操作。外部の慣習を追加せず、記載された規則だけで判断する。",
+        "field_definitions": "error_percent: エラー率（%）、healthy_replicas: 正常なレプリカ数、backup_age_hours: バックアップからの時間、open_incidents: 未解決障害数、approved/security_alert: 1が真、0が偽。",
+        "facts": {
+          "error_percent": 96,
+          "healthy_replicas": 3,
+          "backup_age_hours": 4,
+          "open_incidents": 3,
+          "approved": 0,
+          "security_alert": 1
+        },
+        "rules": [
+          "規則 R8653（優先度 59）: 条件 (open_incidents >= 1 または security_alert = 1) のとき「公開を保留する」。ただし (security_alert = 0 かつ backup_age_hours >= 71) のとき、この規則は適用しない。",
+          "規則 R2137（優先度 14）: 条件 (error_percent >= 12 または backup_age_hours < 39) のとき「公開を保留する」。ただし (error_percent >= 47 または security_alert = 1) のとき、この規則は適用しない。",
+          "規則 R4359（優先度 83）: 条件 (backup_age_hours < 21 かつ healthy_replicas >= 5) のとき「公開をロールバックする」。ただし (open_incidents < 3 または backup_age_hours >= 68) のとき、この規則は適用しない。",
+          "規則 R3650（優先度 31）: 条件 (error_percent < 48 または healthy_replicas < 8) のとき「全利用者へ公開する」。ただし (approved = 1 または error_percent >= 18) のとき、この規則は適用しない。",
+          "規則 R7053（優先度 33）: 条件 (healthy_replicas < 3 または open_incidents >= 2) のとき「小規模なカナリア群へ公開する」。ただし (error_percent >= 17 かつ backup_age_hours >= 33) のとき、この規則は適用しない。",
+          "規則 R9786（優先度 77）: 条件 (error_percent >= 4 または backup_age_hours >= 56) のとき「公開をロールバックする」。ただし (healthy_replicas >= 8 かつ backup_age_hours < 53) のとき、この規則は適用しない。"
+        ],
+        "default_action": "小規模なカナリア群へ公開する"
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "実行すべき操作はどれですか。",
+          "criteria": {
+            "A": "公開を保留する",
+            "B": "公開をロールバックする",
+            "C": "全利用者へ公開する",
+            "D": "小規模なカナリア群へ公開する"
+          }
+        }
+      }
+    },
+    "gold_choice": "B",
+    "gold_internal": 3,
+    "option_internal_order": [
+      2,
+      3,
+      0,
+      1
+    ],
+    "abstract": {
+      "facts": {
+        "error_percent": 96,
+        "healthy_replicas": 3,
+        "backup_age_hours": 4,
+        "open_incidents": 3,
+        "approved": 0,
+        "security_alert": 1
+      },
+      "rules": [
+        {
+          "id": "R8653",
+          "priority": 59,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 71
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R2137",
+          "priority": 14,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 12
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 39
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 47
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R4359",
+          "priority": 83,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 21
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 5
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 68
+              }
+            ]
+          },
+          "action": 3
+        },
+        {
+          "id": "R3650",
+          "priority": 31,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 48
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 8
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 18
+              }
+            ]
+          },
+          "action": 0
+        },
+        {
+          "id": "R7053",
+          "priority": 33,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 2
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 17
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 33
+              }
+            ]
+          },
+          "action": 1
+        },
+        {
+          "id": "R9786",
+          "priority": 77,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 4
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 56
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 8
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 53
+              }
+            ]
+          },
+          "action": 3
+        }
+      ],
+      "default": 1
+    },
+    "witness": {
+      "winning_rule": "R9786",
+      "checks": [
+        {
+          "id": "R8653",
+          "condition": true,
+          "exception": false,
+          "priority": 59,
+          "action": 2
+        },
+        {
+          "id": "R2137",
+          "condition": true,
+          "exception": true,
+          "priority": 14,
+          "action": 2
+        },
+        {
+          "id": "R4359",
+          "condition": false,
+          "exception": false,
+          "priority": 83,
+          "action": 3
+        },
+        {
+          "id": "R3650",
+          "condition": true,
+          "exception": true,
+          "priority": 31,
+          "action": 0
+        },
+        {
+          "id": "R7053",
+          "condition": true,
+          "exception": false,
+          "priority": 33,
+          "action": 1
+        },
+        {
+          "id": "R9786",
+          "condition": true,
+          "exception": false,
+          "priority": 77,
+          "action": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "policy-hard-en-035",
+    "family": "policy",
+    "difficulty": "hard",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|policy|hard|en|35",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Fictional release policy. Among rules whose condition holds and exception does NOT hold, apply ONLY the rule with the largest numeric priority. Use the default if none applies. Use only the written policy, not outside conventions.",
+        "field_definitions": "error_percent: failed requests (%); healthy_replicas: working replicas; backup_age_hours: time since backup; open_incidents: active incidents; approved/security_alert: 1=true, 0=false.",
+        "facts": {
+          "error_percent": 11,
+          "healthy_replicas": 0,
+          "backup_age_hours": 41,
+          "open_incidents": 2,
+          "approved": 0,
+          "security_alert": 1
+        },
+        "rules": [
+          "Rule R1602 (priority 44): if (approved = 0 OR open_incidents >= 3 OR error_percent < 67), action: Roll back the release. EXCEPTION: this rule does not apply if (healthy_replicas < 6 AND approved = 0 AND open_incidents >= 4).",
+          "Rule R7337 (priority 62): if (approved = 0 OR security_alert = 0 OR error_percent < 48), action: Roll back the release. EXCEPTION: this rule does not apply if (backup_age_hours >= 1 OR error_percent < 90 OR approved = 1).",
+          "Rule R6865 (priority 99): if (approved = 1 OR error_percent < 75 OR security_alert = 0), action: Hold the release. EXCEPTION: this rule does not apply if (security_alert = 1 AND open_incidents < 6 AND healthy_replicas < 1).",
+          "Rule R4590 (priority 37): if (security_alert = 1 OR backup_age_hours < 6 OR error_percent >= 94), action: Hold the release. EXCEPTION: this rule does not apply if (backup_age_hours < 3 OR security_alert = 0 OR open_incidents >= 6).",
+          "Rule R9596 (priority 85): if (healthy_replicas < 4 OR security_alert = 0 OR open_incidents >= 4), action: Release to all users. EXCEPTION: this rule does not apply if (approved = 1 OR security_alert = 1 OR open_incidents < 4).",
+          "Rule R8981 (priority 82): if (open_incidents < 2 OR error_percent >= 5 OR approved = 1), action: Release to a small canary group. EXCEPTION: this rule does not apply if (error_percent < 82 AND open_incidents >= 5 AND backup_age_hours >= 41).",
+          "Rule R1140 (priority 58): if (error_percent >= 59 OR open_incidents >= 2 OR approved = 0), action: Release to a small canary group. EXCEPTION: this rule does not apply if (open_incidents < 2 OR security_alert = 0 OR error_percent < 34).",
+          "Rule R8769 (priority 83): if (healthy_replicas < 3 OR error_percent < 68 OR backup_age_hours >= 67), action: Release to a small canary group. EXCEPTION: this rule does not apply if (open_incidents >= 1 AND error_percent < 67 AND backup_age_hours < 40).",
+          "Rule R5203 (priority 35): if (backup_age_hours < 8 AND error_percent >= 91 AND open_incidents < 3), action: Hold the release. EXCEPTION: this rule does not apply if (backup_age_hours >= 44 AND healthy_replicas < 8 AND open_incidents < 3).",
+          "Rule R4623 (priority 12): if (security_alert = 1 AND approved = 1 AND error_percent >= 1), action: Roll back the release. EXCEPTION: this rule does not apply if (approved = 1 OR healthy_replicas < 5 OR backup_age_hours >= 10)."
+        ],
+        "default_action": "Hold the release"
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Which action must be executed?",
+          "criteria": {
+            "A": "Release to all users",
+            "B": "Hold the release",
+            "C": "Release to a small canary group",
+            "D": "Roll back the release"
+          }
+        }
+      }
+    },
+    "gold_choice": "C",
+    "gold_internal": 1,
+    "option_internal_order": [
+      0,
+      2,
+      1,
+      3
+    ],
+    "abstract": {
+      "facts": {
+        "error_percent": 11,
+        "healthy_replicas": 0,
+        "backup_age_hours": 41,
+        "open_incidents": 2,
+        "approved": 0,
+        "security_alert": 1
+      },
+      "rules": [
+        {
+          "id": "R1602",
+          "priority": 44,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 67
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 6
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 4
+              }
+            ]
+          },
+          "action": 3
+        },
+        {
+          "id": "R7337",
+          "priority": 62,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 48
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 90
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "action": 3
+        },
+        {
+          "id": "R6865",
+          "priority": 99,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 75
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 6
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 1
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R4590",
+          "priority": 37,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 6
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 94
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 6
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R9596",
+          "priority": 85,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 4
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 4
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 4
+              }
+            ]
+          },
+          "action": 0
+        },
+        {
+          "id": "R8981",
+          "priority": 82,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 2
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 5
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 82
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 5
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 41
+              }
+            ]
+          },
+          "action": 1
+        },
+        {
+          "id": "R1140",
+          "priority": 58,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 59
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 2
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 2
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 34
+              }
+            ]
+          },
+          "action": 1
+        },
+        {
+          "id": "R8769",
+          "priority": 83,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 68
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 67
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 67
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 40
+              }
+            ]
+          },
+          "action": 1
+        },
+        {
+          "id": "R5203",
+          "priority": 35,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 8
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 91
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 3
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 44
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 8
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 3
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R4623",
+          "priority": 12,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 1
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 5
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 10
+              }
+            ]
+          },
+          "action": 3
+        }
+      ],
+      "default": 2
+    },
+    "witness": {
+      "winning_rule": "R8769",
+      "checks": [
+        {
+          "id": "R1602",
+          "condition": true,
+          "exception": false,
+          "priority": 44,
+          "action": 3
+        },
+        {
+          "id": "R7337",
+          "condition": true,
+          "exception": true,
+          "priority": 62,
+          "action": 3
+        },
+        {
+          "id": "R6865",
+          "condition": true,
+          "exception": true,
+          "priority": 99,
+          "action": 2
+        },
+        {
+          "id": "R4590",
+          "condition": true,
+          "exception": false,
+          "priority": 37,
+          "action": 2
+        },
+        {
+          "id": "R9596",
+          "condition": true,
+          "exception": true,
+          "priority": 85,
+          "action": 0
+        },
+        {
+          "id": "R8981",
+          "condition": true,
+          "exception": false,
+          "priority": 82,
+          "action": 1
+        },
+        {
+          "id": "R1140",
+          "condition": true,
+          "exception": true,
+          "priority": 58,
+          "action": 1
+        },
+        {
+          "id": "R8769",
+          "condition": true,
+          "exception": false,
+          "priority": 83,
+          "action": 1
+        },
+        {
+          "id": "R5203",
+          "condition": false,
+          "exception": false,
+          "priority": 35,
+          "action": 2
+        },
+        {
+          "id": "R4623",
+          "condition": false,
+          "exception": true,
+          "priority": 12,
+          "action": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "policy-hard-ja-005",
+    "family": "policy",
+    "difficulty": "hard",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|policy|hard|ja|5",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "架空のサービスの公開規則。条件を満たし、適用除外に該当しない規則のうち、優先度の数値が最大の規則を1つだけ適用する。該当がなければ既定の操作。外部の慣習を追加せず、記載された規則だけで判断する。",
+        "field_definitions": "error_percent: エラー率（%）、healthy_replicas: 正常なレプリカ数、backup_age_hours: バックアップからの時間、open_incidents: 未解決障害数、approved/security_alert: 1が真、0が偽。",
+        "facts": {
+          "error_percent": 80,
+          "healthy_replicas": 4,
+          "backup_age_hours": 43,
+          "open_incidents": 0,
+          "approved": 0,
+          "security_alert": 0
+        },
+        "rules": [
+          "規則 R1167（優先度 64）: 条件 (open_incidents < 5 かつ healthy_replicas < 2 かつ approved = 0) のとき「小規模なカナリア群へ公開する」。ただし (open_incidents < 3 かつ healthy_replicas < 1 かつ security_alert = 1) のとき、この規則は適用しない。",
+          "規則 R9235（優先度 22）: 条件 (healthy_replicas < 3 または error_percent >= 62 または backup_age_hours < 40) のとき「公開をロールバックする」。ただし (error_percent < 74 かつ healthy_replicas >= 7 かつ security_alert = 0) のとき、この規則は適用しない。",
+          "規則 R1103（優先度 67）: 条件 (security_alert = 1 または error_percent >= 72 または healthy_replicas >= 6) のとき「全利用者へ公開する」。ただし (security_alert = 1 または error_percent < 3 または open_incidents < 4) のとき、この規則は適用しない。",
+          "規則 R8522（優先度 56）: 条件 (backup_age_hours >= 11 または healthy_replicas >= 2 または open_incidents >= 5) のとき「公開をロールバックする」。ただし (open_incidents >= 3 かつ backup_age_hours < 37 かつ approved = 0) のとき、この規則は適用しない。",
+          "規則 R9797（優先度 76）: 条件 (security_alert = 0 かつ error_percent < 73 かつ approved = 1) のとき「公開を保留する」。ただし (backup_age_hours >= 18 または error_percent < 46 または open_incidents < 2) のとき、この規則は適用しない。",
+          "規則 R5064（優先度 92）: 条件 (approved = 0 または open_incidents < 1 または backup_age_hours < 3) のとき「公開を保留する」。ただし (healthy_replicas < 6 かつ open_incidents < 4 かつ approved = 0) のとき、この規則は適用しない。",
+          "規則 R3851（優先度 79）: 条件 (error_percent < 68 または healthy_replicas < 1 または backup_age_hours >= 32) のとき「公開をロールバックする」。ただし (security_alert = 1 または approved = 1 または backup_age_hours < 8) のとき、この規則は適用しない。",
+          "規則 R4787（優先度 71）: 条件 (backup_age_hours >= 25 かつ error_percent >= 34 かつ approved = 0) のとき「公開を保留する」。ただし (security_alert = 0 かつ error_percent >= 19 かつ healthy_replicas >= 2) のとき、この規則は適用しない。",
+          "規則 R2370（優先度 72）: 条件 (backup_age_hours < 55 または healthy_replicas < 7 または open_incidents < 6) のとき「全利用者へ公開する」。ただし (security_alert = 1 かつ error_percent >= 54 かつ approved = 1) のとき、この規則は適用しない。",
+          "規則 R3267（優先度 55）: 条件 (healthy_replicas >= 3 かつ open_incidents < 5 かつ approved = 0) のとき「全利用者へ公開する」。ただし (security_alert = 1 かつ backup_age_hours < 51 かつ approved = 0) のとき、この規則は適用しない。"
+        ],
+        "default_action": "公開を保留する"
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "実行すべき操作はどれですか。",
+          "criteria": {
+            "A": "公開をロールバックする",
+            "B": "小規模なカナリア群へ公開する",
+            "C": "公開を保留する",
+            "D": "全利用者へ公開する"
+          }
+        }
+      }
+    },
+    "gold_choice": "A",
+    "gold_internal": 3,
+    "option_internal_order": [
+      3,
+      1,
+      2,
+      0
+    ],
+    "abstract": {
+      "facts": {
+        "error_percent": 80,
+        "healthy_replicas": 4,
+        "backup_age_hours": 43,
+        "open_incidents": 0,
+        "approved": 0,
+        "security_alert": 0
+      },
+      "rules": [
+        {
+          "id": "R1167",
+          "priority": 64,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 5
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 2
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "action": 1
+        },
+        {
+          "id": "R9235",
+          "priority": 22,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 62
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 40
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 74
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 7
+              },
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "action": 3
+        },
+        {
+          "id": "R1103",
+          "priority": 67,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 72
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 6
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 4
+              }
+            ]
+          },
+          "action": 0
+        },
+        {
+          "id": "R8522",
+          "priority": 56,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 11
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 2
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 5
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "ge",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 37
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "action": 3
+        },
+        {
+          "id": "R9797",
+          "priority": 76,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 73
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 18
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 46
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 2
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R5064",
+          "priority": 92,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 3
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 6
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 4
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R3851",
+          "priority": 79,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "lt",
+                "value": 68
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 32
+              }
+            ]
+          },
+          "except": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 8
+              }
+            ]
+          },
+          "action": 3
+        },
+        {
+          "id": "R4787",
+          "priority": 71,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "ge",
+                "value": 25
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 34
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 0
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 19
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 2
+              }
+            ]
+          },
+          "action": 2
+        },
+        {
+          "id": "R2370",
+          "priority": 72,
+          "when": {
+            "kind": "any",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 55
+              },
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "lt",
+                "value": 7
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 6
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "error_percent",
+                "op": "ge",
+                "value": 54
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          "action": 0
+        },
+        {
+          "id": "R3267",
+          "priority": 55,
+          "when": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "healthy_replicas",
+                "op": "ge",
+                "value": 3
+              },
+              {
+                "kind": "atom",
+                "field": "open_incidents",
+                "op": "lt",
+                "value": 5
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "except": {
+            "kind": "all",
+            "children": [
+              {
+                "kind": "atom",
+                "field": "security_alert",
+                "op": "eq",
+                "value": 1
+              },
+              {
+                "kind": "atom",
+                "field": "backup_age_hours",
+                "op": "lt",
+                "value": 51
+              },
+              {
+                "kind": "atom",
+                "field": "approved",
+                "op": "eq",
+                "value": 0
+              }
+            ]
+          },
+          "action": 0
+        }
+      ],
+      "default": 2
+    },
+    "witness": {
+      "winning_rule": "R3851",
+      "checks": [
+        {
+          "id": "R1167",
+          "condition": false,
+          "exception": false,
+          "priority": 64,
+          "action": 1
+        },
+        {
+          "id": "R9235",
+          "condition": true,
+          "exception": false,
+          "priority": 22,
+          "action": 3
+        },
+        {
+          "id": "R1103",
+          "condition": true,
+          "exception": true,
+          "priority": 67,
+          "action": 0
+        },
+        {
+          "id": "R8522",
+          "condition": true,
+          "exception": false,
+          "priority": 56,
+          "action": 3
+        },
+        {
+          "id": "R9797",
+          "condition": false,
+          "exception": true,
+          "priority": 76,
+          "action": 2
+        },
+        {
+          "id": "R5064",
+          "condition": true,
+          "exception": true,
+          "priority": 92,
+          "action": 2
+        },
+        {
+          "id": "R3851",
+          "condition": true,
+          "exception": false,
+          "priority": 79,
+          "action": 3
+        },
+        {
+          "id": "R4787",
+          "condition": true,
+          "exception": true,
+          "priority": 71,
+          "action": 2
+        },
+        {
+          "id": "R2370",
+          "condition": true,
+          "exception": false,
+          "priority": 72,
+          "action": 0
+        },
+        {
+          "id": "R3267",
+          "condition": true,
+          "exception": false,
+          "priority": 55,
+          "action": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "temporal-easy-en-011",
+    "family": "temporal",
+    "difficulty": "easy",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|temporal|easy|en|11",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Container movements within one day. Remove cancelled event IDs as if they never occurred; apply remaining events in ascending timestamp order, not display order. A swap exchanges the two containers' current locations. A location can hold multiple containers.",
+        "initial_locations": {
+          "Dahlia": "North",
+          "Aster": "West",
+          "Elm": "South",
+          "Juniper": "East"
+        },
+        "events": [
+          "E830 / 08:06 / Move container Aster to South.",
+          "E785 / 08:42 / Swap the locations of container Juniper and container Dahlia.",
+          "E700 / 11:45 / Swap the locations of container Aster and container Dahlia.",
+          "E346 / 16:29 / Move container Juniper to East.",
+          "E886 / 12:34 / Move container Dahlia to North."
+        ],
+        "cancelled_event_ids": []
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Where is container Aster after all valid events?",
+          "criteria": {
+            "A": "West",
+            "B": "North",
+            "C": "South",
+            "D": "East"
+          }
+        }
+      }
+    },
+    "gold_choice": "D",
+    "gold_internal": "East",
+    "option_internal_order": [
+      "West",
+      "North",
+      "South",
+      "East"
+    ],
+    "abstract": {
+      "initial": {
+        "Dahlia": "North",
+        "Aster": "West",
+        "Elm": "South",
+        "Juniper": "East"
+      },
+      "events": [
+        {
+          "id": "E830",
+          "minute": 486,
+          "kind": "move",
+          "item": "Aster",
+          "location": "South"
+        },
+        {
+          "id": "E785",
+          "minute": 522,
+          "kind": "swap",
+          "items": [
+            "Juniper",
+            "Dahlia"
+          ]
+        },
+        {
+          "id": "E700",
+          "minute": 705,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Dahlia"
+          ]
+        },
+        {
+          "id": "E346",
+          "minute": 989,
+          "kind": "move",
+          "item": "Juniper",
+          "location": "East"
+        },
+        {
+          "id": "E886",
+          "minute": 754,
+          "kind": "move",
+          "item": "Dahlia",
+          "location": "North"
+        }
+      ],
+      "cancelled": [],
+      "target": "Aster",
+      "locations": [
+        "South",
+        "North",
+        "East",
+        "West"
+      ]
+    },
+    "witness": {
+      "backward_trace": [
+        "E700",
+        "E785"
+      ],
+      "final_locations": {
+        "Dahlia": "North",
+        "Aster": "East",
+        "Elm": "South",
+        "Juniper": "East"
+      },
+      "ignoring_cancellations": "East"
+    }
+  },
+  {
+    "id": "temporal-easy-ja-001",
+    "family": "temporal",
+    "difficulty": "easy",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|temporal|easy|ja|1",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "同じ日の容器の移動記録。取消済みのIDは最初から実行されなかったものとして除外し、残りを時刻の昇順で適用する。表示順は時刻順とは限らない。交換は、その時点の2つの容器の場所を入れ替える。各場所には複数の容器を置ける。",
+        "initial_locations": {
+          "Iris": "East",
+          "Cedar": "West",
+          "Elm": "South",
+          "Ginkgo": "North"
+        },
+        "events": [
+          "E878 / 12:26 / 容器 Cedar と容器 Iris の場所を交換する。",
+          "E214 / 09:02 / 容器 Cedar と容器 Elm の場所を交換する。",
+          "E748 / 12:25 / 容器 Ginkgo と容器 Iris の場所を交換する。",
+          "E148 / 08:21 / 容器 Ginkgo を South へ移す。",
+          "E108 / 09:29 / 容器 Ginkgo を West へ移す。"
+        ],
+        "cancelled_event_ids": []
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "最後に容器 Ginkgo はどこにありますか。",
+          "criteria": {
+            "A": "North",
+            "B": "East",
+            "C": "West",
+            "D": "South"
+          }
+        }
+      }
+    },
+    "gold_choice": "B",
+    "gold_internal": "East",
+    "option_internal_order": [
+      "North",
+      "East",
+      "West",
+      "South"
+    ],
+    "abstract": {
+      "initial": {
+        "Iris": "East",
+        "Cedar": "West",
+        "Elm": "South",
+        "Ginkgo": "North"
+      },
+      "events": [
+        {
+          "id": "E878",
+          "minute": 746,
+          "kind": "swap",
+          "items": [
+            "Cedar",
+            "Iris"
+          ]
+        },
+        {
+          "id": "E214",
+          "minute": 542,
+          "kind": "swap",
+          "items": [
+            "Cedar",
+            "Elm"
+          ]
+        },
+        {
+          "id": "E748",
+          "minute": 745,
+          "kind": "swap",
+          "items": [
+            "Ginkgo",
+            "Iris"
+          ]
+        },
+        {
+          "id": "E148",
+          "minute": 501,
+          "kind": "move",
+          "item": "Ginkgo",
+          "location": "South"
+        },
+        {
+          "id": "E108",
+          "minute": 569,
+          "kind": "move",
+          "item": "Ginkgo",
+          "location": "West"
+        }
+      ],
+      "cancelled": [],
+      "target": "Ginkgo",
+      "locations": [
+        "East",
+        "North",
+        "South",
+        "West"
+      ]
+    },
+    "witness": {
+      "backward_trace": [
+        "E748"
+      ],
+      "final_locations": {
+        "Iris": "South",
+        "Cedar": "West",
+        "Elm": "West",
+        "Ginkgo": "East"
+      },
+      "ignoring_cancellations": "East"
+    }
+  },
+  {
+    "id": "temporal-medium-en-005",
+    "family": "temporal",
+    "difficulty": "medium",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|temporal|medium|en|5",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Container movements within one day. Remove cancelled event IDs as if they never occurred; apply remaining events in ascending timestamp order, not display order. A swap exchanges the two containers' current locations. A location can hold multiple containers.",
+        "initial_locations": {
+          "Cedar": "West",
+          "Maple": "East",
+          "Iris": "West",
+          "Larch": "South",
+          "Aster": "North",
+          "Birch": "East",
+          "Hazel": "South",
+          "Dahlia": "North"
+        },
+        "events": [
+          "E921 / 13:51 / Move container Larch to West.",
+          "E998 / 12:03 / Swap the locations of container Aster and container Iris.",
+          "E557 / 14:18 / Swap the locations of container Iris and container Larch.",
+          "E328 / 14:21 / Swap the locations of container Cedar and container Aster.",
+          "E410 / 09:39 / Move container Aster to East.",
+          "E102 / 16:50 / Swap the locations of container Aster and container Larch.",
+          "E208 / 09:32 / Swap the locations of container Maple and container Dahlia.",
+          "E301 / 10:45 / Swap the locations of container Birch and container Cedar.",
+          "E289 / 09:20 / Move container Dahlia to South.",
+          "E194 / 10:57 / Swap the locations of container Iris and container Hazel.",
+          "E875 / 12:31 / Swap the locations of container Larch and container Aster.",
+          "E867 / 13:25 / Swap the locations of container Hazel and container Iris."
+        ],
+        "cancelled_event_ids": [
+          "E208",
+          "E998"
+        ]
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Where is container Iris after all valid events?",
+          "criteria": {
+            "A": "South",
+            "B": "North",
+            "C": "East",
+            "D": "West"
+          }
+        }
+      }
+    },
+    "gold_choice": "D",
+    "gold_internal": "West",
+    "option_internal_order": [
+      "South",
+      "North",
+      "East",
+      "West"
+    ],
+    "abstract": {
+      "initial": {
+        "Cedar": "West",
+        "Maple": "East",
+        "Iris": "West",
+        "Larch": "South",
+        "Aster": "North",
+        "Birch": "East",
+        "Hazel": "South",
+        "Dahlia": "North"
+      },
+      "events": [
+        {
+          "id": "E921",
+          "minute": 831,
+          "kind": "move",
+          "item": "Larch",
+          "location": "West"
+        },
+        {
+          "id": "E998",
+          "minute": 723,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Iris"
+          ]
+        },
+        {
+          "id": "E557",
+          "minute": 858,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E328",
+          "minute": 861,
+          "kind": "swap",
+          "items": [
+            "Cedar",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E410",
+          "minute": 579,
+          "kind": "move",
+          "item": "Aster",
+          "location": "East"
+        },
+        {
+          "id": "E102",
+          "minute": 1010,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E208",
+          "minute": 572,
+          "kind": "swap",
+          "items": [
+            "Maple",
+            "Dahlia"
+          ]
+        },
+        {
+          "id": "E301",
+          "minute": 645,
+          "kind": "swap",
+          "items": [
+            "Birch",
+            "Cedar"
+          ]
+        },
+        {
+          "id": "E289",
+          "minute": 560,
+          "kind": "move",
+          "item": "Dahlia",
+          "location": "South"
+        },
+        {
+          "id": "E194",
+          "minute": 657,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Hazel"
+          ]
+        },
+        {
+          "id": "E875",
+          "minute": 751,
+          "kind": "swap",
+          "items": [
+            "Larch",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E867",
+          "minute": 805,
+          "kind": "swap",
+          "items": [
+            "Hazel",
+            "Iris"
+          ]
+        }
+      ],
+      "cancelled": [
+        "E208",
+        "E998"
+      ],
+      "target": "Iris",
+      "locations": [
+        "North",
+        "West",
+        "South",
+        "East"
+      ]
+    },
+    "witness": {
+      "backward_trace": [
+        "E557",
+        "E921"
+      ],
+      "final_locations": {
+        "Cedar": "South",
+        "Maple": "East",
+        "Iris": "West",
+        "Larch": "East",
+        "Aster": "West",
+        "Birch": "West",
+        "Hazel": "South",
+        "Dahlia": "South"
+      },
+      "ignoring_cancellations": "West"
+    }
+  },
+  {
+    "id": "temporal-medium-ja-004",
+    "family": "temporal",
+    "difficulty": "medium",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|temporal|medium|ja|4",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "同じ日の容器の移動記録。取消済みのIDは最初から実行されなかったものとして除外し、残りを時刻の昇順で適用する。表示順は時刻順とは限らない。交換は、その時点の2つの容器の場所を入れ替える。各場所には複数の容器を置ける。",
+        "initial_locations": {
+          "Aster": "East",
+          "Fern": "South",
+          "Dahlia": "West",
+          "Ginkgo": "West",
+          "Hazel": "North",
+          "Maple": "South",
+          "Birch": "North",
+          "Cedar": "East"
+        },
+        "events": [
+          "E498 / 11:05 / 容器 Dahlia と容器 Hazel の場所を交換する。",
+          "E784 / 09:06 / 容器 Dahlia と容器 Maple の場所を交換する。",
+          "E688 / 13:55 / 容器 Birch と容器 Aster の場所を交換する。",
+          "E823 / 15:21 / 容器 Aster を West へ移す。",
+          "E143 / 16:51 / 容器 Ginkgo と容器 Birch の場所を交換する。",
+          "E480 / 09:09 / 容器 Fern と容器 Ginkgo の場所を交換する。",
+          "E791 / 14:19 / 容器 Dahlia と容器 Fern の場所を交換する。",
+          "E656 / 12:24 / 容器 Maple と容器 Cedar の場所を交換する。",
+          "E234 / 16:33 / 容器 Fern と容器 Birch の場所を交換する。",
+          "E776 / 12:07 / 容器 Birch と容器 Dahlia の場所を交換する。",
+          "E318 / 08:40 / 容器 Dahlia と容器 Aster の場所を交換する。",
+          "E949 / 14:33 / 容器 Dahlia を South へ移す。"
+        ],
+        "cancelled_event_ids": [
+          "E656",
+          "E318"
+        ]
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "最後に容器 Birch はどこにありますか。",
+          "criteria": {
+            "A": "East",
+            "B": "South",
+            "C": "West",
+            "D": "North"
+          }
+        }
+      }
+    },
+    "gold_choice": "B",
+    "gold_internal": "South",
+    "option_internal_order": [
+      "East",
+      "South",
+      "West",
+      "North"
+    ],
+    "abstract": {
+      "initial": {
+        "Aster": "East",
+        "Fern": "South",
+        "Dahlia": "West",
+        "Ginkgo": "West",
+        "Hazel": "North",
+        "Maple": "South",
+        "Birch": "North",
+        "Cedar": "East"
+      },
+      "events": [
+        {
+          "id": "E498",
+          "minute": 665,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Hazel"
+          ]
+        },
+        {
+          "id": "E784",
+          "minute": 546,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Maple"
+          ]
+        },
+        {
+          "id": "E688",
+          "minute": 835,
+          "kind": "swap",
+          "items": [
+            "Birch",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E823",
+          "minute": 921,
+          "kind": "move",
+          "item": "Aster",
+          "location": "West"
+        },
+        {
+          "id": "E143",
+          "minute": 1011,
+          "kind": "swap",
+          "items": [
+            "Ginkgo",
+            "Birch"
+          ]
+        },
+        {
+          "id": "E480",
+          "minute": 549,
+          "kind": "swap",
+          "items": [
+            "Fern",
+            "Ginkgo"
+          ]
+        },
+        {
+          "id": "E791",
+          "minute": 859,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Fern"
+          ]
+        },
+        {
+          "id": "E656",
+          "minute": 744,
+          "kind": "swap",
+          "items": [
+            "Maple",
+            "Cedar"
+          ]
+        },
+        {
+          "id": "E234",
+          "minute": 993,
+          "kind": "swap",
+          "items": [
+            "Fern",
+            "Birch"
+          ]
+        },
+        {
+          "id": "E776",
+          "minute": 727,
+          "kind": "swap",
+          "items": [
+            "Birch",
+            "Dahlia"
+          ]
+        },
+        {
+          "id": "E318",
+          "minute": 520,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E949",
+          "minute": 873,
+          "kind": "move",
+          "item": "Dahlia",
+          "location": "South"
+        }
+      ],
+      "cancelled": [
+        "E656",
+        "E318"
+      ],
+      "target": "Birch",
+      "locations": [
+        "East",
+        "South",
+        "North",
+        "West"
+      ]
+    },
+    "witness": {
+      "backward_trace": [
+        "E143",
+        "E480"
+      ],
+      "final_locations": {
+        "Aster": "West",
+        "Fern": "East",
+        "Dahlia": "South",
+        "Ginkgo": "North",
+        "Hazel": "South",
+        "Maple": "West",
+        "Birch": "South",
+        "Cedar": "East"
+      },
+      "ignoring_cancellations": "South"
+    }
+  },
+  {
+    "id": "temporal-hard-en-013",
+    "family": "temporal",
+    "difficulty": "hard",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|temporal|hard|en|13",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Container movements within one day. Remove cancelled event IDs as if they never occurred; apply remaining events in ascending timestamp order, not display order. A swap exchanges the two containers' current locations. A location can hold multiple containers.",
+        "initial_locations": {
+          "Aster": "South",
+          "Cedar": "North",
+          "Iris": "West",
+          "Birch": "North",
+          "Juniper": "West",
+          "Larch": "East",
+          "Dahlia": "South",
+          "Hazel": "East"
+        },
+        "events": [
+          "E953 / 11:19 / Swap the locations of container Birch and container Larch.",
+          "E368 / 12:28 / Swap the locations of container Iris and container Aster.",
+          "E555 / 13:32 / Swap the locations of container Aster and container Larch.",
+          "E777 / 13:03 / Swap the locations of container Larch and container Birch.",
+          "E232 / 13:02 / Swap the locations of container Iris and container Birch.",
+          "E491 / 10:25 / Swap the locations of container Larch and container Juniper.",
+          "E146 / 11:11 / Swap the locations of container Iris and container Dahlia.",
+          "E979 / 14:07 / Move container Hazel to West.",
+          "E974 / 10:54 / Swap the locations of container Dahlia and container Cedar.",
+          "E514 / 13:19 / Swap the locations of container Cedar and container Birch.",
+          "E729 / 09:12 / Swap the locations of container Hazel and container Aster.",
+          "E488 / 09:28 / Swap the locations of container Hazel and container Juniper.",
+          "E243 / 09:46 / Swap the locations of container Juniper and container Hazel.",
+          "E877 / 16:02 / Swap the locations of container Juniper and container Aster.",
+          "E456 / 15:13 / Swap the locations of container Cedar and container Birch.",
+          "E215 / 13:06 / Swap the locations of container Iris and container Juniper.",
+          "E820 / 14:23 / Swap the locations of container Cedar and container Juniper.",
+          "E524 / 09:20 / Swap the locations of container Iris and container Birch.",
+          "E878 / 11:20 / Swap the locations of container Juniper and container Larch.",
+          "E904 / 12:59 / Swap the locations of container Iris and container Juniper.",
+          "E916 / 12:37 / Swap the locations of container Birch and container Hazel.",
+          "E551 / 11:07 / Swap the locations of container Cedar and container Birch."
+        ],
+        "cancelled_event_ids": [
+          "E456",
+          "E777",
+          "E555",
+          "E215"
+        ]
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Where is container Iris after all valid events?",
+          "criteria": {
+            "A": "East",
+            "B": "West",
+            "C": "North",
+            "D": "South"
+          }
+        }
+      }
+    },
+    "gold_choice": "D",
+    "gold_internal": "South",
+    "option_internal_order": [
+      "East",
+      "West",
+      "North",
+      "South"
+    ],
+    "abstract": {
+      "initial": {
+        "Aster": "South",
+        "Cedar": "North",
+        "Iris": "West",
+        "Birch": "North",
+        "Juniper": "West",
+        "Larch": "East",
+        "Dahlia": "South",
+        "Hazel": "East"
+      },
+      "events": [
+        {
+          "id": "E953",
+          "minute": 679,
+          "kind": "swap",
+          "items": [
+            "Birch",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E368",
+          "minute": 748,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E555",
+          "minute": 812,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E777",
+          "minute": 783,
+          "kind": "swap",
+          "items": [
+            "Larch",
+            "Birch"
+          ]
+        },
+        {
+          "id": "E232",
+          "minute": 782,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Birch"
+          ]
+        },
+        {
+          "id": "E491",
+          "minute": 625,
+          "kind": "swap",
+          "items": [
+            "Larch",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E146",
+          "minute": 671,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Dahlia"
+          ]
+        },
+        {
+          "id": "E979",
+          "minute": 847,
+          "kind": "move",
+          "item": "Hazel",
+          "location": "West"
+        },
+        {
+          "id": "E974",
+          "minute": 654,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Cedar"
+          ]
+        },
+        {
+          "id": "E514",
+          "minute": 799,
+          "kind": "swap",
+          "items": [
+            "Cedar",
+            "Birch"
+          ]
+        },
+        {
+          "id": "E729",
+          "minute": 552,
+          "kind": "swap",
+          "items": [
+            "Hazel",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E488",
+          "minute": 568,
+          "kind": "swap",
+          "items": [
+            "Hazel",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E243",
+          "minute": 586,
+          "kind": "swap",
+          "items": [
+            "Juniper",
+            "Hazel"
+          ]
+        },
+        {
+          "id": "E877",
+          "minute": 962,
+          "kind": "swap",
+          "items": [
+            "Juniper",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E456",
+          "minute": 913,
+          "kind": "swap",
+          "items": [
+            "Cedar",
+            "Birch"
+          ]
+        },
+        {
+          "id": "E215",
+          "minute": 786,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E820",
+          "minute": 863,
+          "kind": "swap",
+          "items": [
+            "Cedar",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E524",
+          "minute": 560,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Birch"
+          ]
+        },
+        {
+          "id": "E878",
+          "minute": 680,
+          "kind": "swap",
+          "items": [
+            "Juniper",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E904",
+          "minute": 779,
+          "kind": "swap",
+          "items": [
+            "Iris",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E916",
+          "minute": 757,
+          "kind": "swap",
+          "items": [
+            "Birch",
+            "Hazel"
+          ]
+        },
+        {
+          "id": "E551",
+          "minute": 667,
+          "kind": "swap",
+          "items": [
+            "Cedar",
+            "Birch"
+          ]
+        }
+      ],
+      "cancelled": [
+        "E456",
+        "E777",
+        "E555",
+        "E215"
+      ],
+      "target": "Iris",
+      "locations": [
+        "North",
+        "East",
+        "South",
+        "West"
+      ]
+    },
+    "witness": {
+      "backward_trace": [
+        "E232",
+        "E916",
+        "E243",
+        "E488",
+        "E729"
+      ],
+      "final_locations": {
+        "Aster": "South",
+        "Cedar": "East",
+        "Iris": "South",
+        "Birch": "West",
+        "Juniper": "North",
+        "Larch": "East",
+        "Dahlia": "North",
+        "Hazel": "West"
+      },
+      "ignoring_cancellations": "East"
+    }
+  },
+  {
+    "id": "temporal-hard-ja-027",
+    "family": "temporal",
+    "difficulty": "hard",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|temporal|hard|ja|27",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "同じ日の容器の移動記録。取消済みのIDは最初から実行されなかったものとして除外し、残りを時刻の昇順で適用する。表示順は時刻順とは限らない。交換は、その時点の2つの容器の場所を入れ替える。各場所には複数の容器を置ける。",
+        "initial_locations": {
+          "Juniper": "North",
+          "Aster": "North",
+          "Elm": "West",
+          "Ginkgo": "South",
+          "Larch": "South",
+          "Fern": "East",
+          "Dahlia": "West",
+          "Maple": "East"
+        },
+        "events": [
+          "E159 / 15:37 / 容器 Dahlia と容器 Juniper の場所を交換する。",
+          "E656 / 16:02 / 容器 Aster と容器 Ginkgo の場所を交換する。",
+          "E588 / 08:34 / 容器 Maple を West へ移す。",
+          "E412 / 14:55 / 容器 Aster と容器 Juniper の場所を交換する。",
+          "E877 / 13:18 / 容器 Juniper と容器 Dahlia の場所を交換する。",
+          "E371 / 12:47 / 容器 Elm と容器 Larch の場所を交換する。",
+          "E463 / 09:54 / 容器 Dahlia と容器 Maple の場所を交換する。",
+          "E854 / 15:54 / 容器 Fern と容器 Larch の場所を交換する。",
+          "E278 / 13:43 / 容器 Fern と容器 Maple の場所を交換する。",
+          "E276 / 11:07 / 容器 Juniper を North へ移す。",
+          "E829 / 09:38 / 容器 Aster と容器 Fern の場所を交換する。",
+          "E890 / 10:19 / 容器 Juniper と容器 Ginkgo の場所を交換する。",
+          "E170 / 08:51 / 容器 Fern と容器 Ginkgo の場所を交換する。",
+          "E784 / 15:32 / 容器 Elm と容器 Dahlia の場所を交換する。",
+          "E898 / 16:01 / 容器 Aster と容器 Fern の場所を交換する。",
+          "E407 / 10:49 / 容器 Dahlia と容器 Elm の場所を交換する。",
+          "E481 / 13:01 / 容器 Fern と容器 Larch の場所を交換する。",
+          "E685 / 16:13 / 容器 Elm と容器 Larch の場所を交換する。",
+          "E296 / 10:46 / 容器 Larch と容器 Aster の場所を交換する。",
+          "E708 / 16:10 / 容器 Fern を South へ移す。",
+          "E884 / 09:45 / 容器 Aster と容器 Juniper の場所を交換する。",
+          "E468 / 14:52 / 容器 Ginkgo と容器 Fern の場所を交換する。"
+        ],
+        "cancelled_event_ids": [
+          "E276",
+          "E463",
+          "E371",
+          "E784"
+        ]
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "最後に容器 Maple はどこにありますか。",
+          "criteria": {
+            "A": "East",
+            "B": "North",
+            "C": "West",
+            "D": "South"
+          }
+        }
+      }
+    },
+    "gold_choice": "B",
+    "gold_internal": "North",
+    "option_internal_order": [
+      "East",
+      "North",
+      "West",
+      "South"
+    ],
+    "abstract": {
+      "initial": {
+        "Juniper": "North",
+        "Aster": "North",
+        "Elm": "West",
+        "Ginkgo": "South",
+        "Larch": "South",
+        "Fern": "East",
+        "Dahlia": "West",
+        "Maple": "East"
+      },
+      "events": [
+        {
+          "id": "E159",
+          "minute": 937,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E656",
+          "minute": 962,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Ginkgo"
+          ]
+        },
+        {
+          "id": "E588",
+          "minute": 514,
+          "kind": "move",
+          "item": "Maple",
+          "location": "West"
+        },
+        {
+          "id": "E412",
+          "minute": 895,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E877",
+          "minute": 798,
+          "kind": "swap",
+          "items": [
+            "Juniper",
+            "Dahlia"
+          ]
+        },
+        {
+          "id": "E371",
+          "minute": 767,
+          "kind": "swap",
+          "items": [
+            "Elm",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E463",
+          "minute": 594,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Maple"
+          ]
+        },
+        {
+          "id": "E854",
+          "minute": 954,
+          "kind": "swap",
+          "items": [
+            "Fern",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E278",
+          "minute": 823,
+          "kind": "swap",
+          "items": [
+            "Fern",
+            "Maple"
+          ]
+        },
+        {
+          "id": "E276",
+          "minute": 667,
+          "kind": "move",
+          "item": "Juniper",
+          "location": "North"
+        },
+        {
+          "id": "E829",
+          "minute": 578,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Fern"
+          ]
+        },
+        {
+          "id": "E890",
+          "minute": 619,
+          "kind": "swap",
+          "items": [
+            "Juniper",
+            "Ginkgo"
+          ]
+        },
+        {
+          "id": "E170",
+          "minute": 531,
+          "kind": "swap",
+          "items": [
+            "Fern",
+            "Ginkgo"
+          ]
+        },
+        {
+          "id": "E784",
+          "minute": 932,
+          "kind": "swap",
+          "items": [
+            "Elm",
+            "Dahlia"
+          ]
+        },
+        {
+          "id": "E898",
+          "minute": 961,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Fern"
+          ]
+        },
+        {
+          "id": "E407",
+          "minute": 649,
+          "kind": "swap",
+          "items": [
+            "Dahlia",
+            "Elm"
+          ]
+        },
+        {
+          "id": "E481",
+          "minute": 781,
+          "kind": "swap",
+          "items": [
+            "Fern",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E685",
+          "minute": 973,
+          "kind": "swap",
+          "items": [
+            "Elm",
+            "Larch"
+          ]
+        },
+        {
+          "id": "E296",
+          "minute": 646,
+          "kind": "swap",
+          "items": [
+            "Larch",
+            "Aster"
+          ]
+        },
+        {
+          "id": "E708",
+          "minute": 970,
+          "kind": "move",
+          "item": "Fern",
+          "location": "South"
+        },
+        {
+          "id": "E884",
+          "minute": 585,
+          "kind": "swap",
+          "items": [
+            "Aster",
+            "Juniper"
+          ]
+        },
+        {
+          "id": "E468",
+          "minute": 892,
+          "kind": "swap",
+          "items": [
+            "Ginkgo",
+            "Fern"
+          ]
+        }
+      ],
+      "cancelled": [
+        "E276",
+        "E463",
+        "E371",
+        "E784"
+      ],
+      "target": "Maple",
+      "locations": [
+        "North",
+        "East",
+        "West",
+        "South"
+      ]
+    },
+    "witness": {
+      "backward_trace": [
+        "E278",
+        "E481",
+        "E296",
+        "E884"
+      ],
+      "final_locations": {
+        "Juniper": "East",
+        "Aster": "West",
+        "Elm": "South",
+        "Ginkgo": "North",
+        "Larch": "West",
+        "Fern": "South",
+        "Dahlia": "South",
+        "Maple": "North"
+      },
+      "ignoring_cancellations": "West"
+    }
+  },
+  {
+    "id": "schedule-easy-en-001",
+    "family": "schedule",
+    "difficulty": "easy",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|schedule|easy|en|1",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Fictional work assignment. Every job occupies one whole slot. Assign every job an allowed worker and slot. A worker cannot do two jobs in the same slot. Each precedence A→B requires A's slot number to be strictly smaller than B's. Exactly one proposed plan meets every written constraint.",
+        "allowed_assignments": {
+          "Fern": {
+            "workers": [
+              "Cai",
+              "Emi",
+              "Finn"
+            ],
+            "slots": [
+              1,
+              2,
+              3
+            ]
+          },
+          "Aster": {
+            "workers": [
+              "Finn",
+              "Aki",
+              "Emi"
+            ],
+            "slots": [
+              3,
+              1,
+              2
+            ]
+          },
+          "Ginkgo": {
+            "workers": [
+              "Finn",
+              "Aki",
+              "Cai",
+              "Emi"
+            ],
+            "slots": [
+              3,
+              2,
+              1
+            ]
+          }
+        },
+        "precedence": [
+          [
+            "Aster",
+            "Fern"
+          ]
+        ]
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Which assignment plan satisfies every constraint?",
+          "criteria": {
+            "A": {
+              "Fern": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Aki",
+                "slot": 2
+              }
+            },
+            "B": {
+              "Fern": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Emi",
+                "slot": 2
+              },
+              "Ginkgo": {
+                "worker": "Finn",
+                "slot": 1
+              }
+            },
+            "C": {
+              "Fern": {
+                "worker": "Aki",
+                "slot": 2
+              },
+              "Aster": {
+                "worker": "Emi",
+                "slot": 1
+              },
+              "Ginkgo": {
+                "worker": "Emi",
+                "slot": 3
+              }
+            },
+            "D": {
+              "Fern": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Cai",
+                "slot": 2
+              },
+              "Ginkgo": {
+                "worker": "Aki",
+                "slot": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "gold_choice": "B",
+    "gold_internal": 0,
+    "option_internal_order": [
+      1,
+      0,
+      3,
+      2
+    ],
+    "abstract": {
+      "workers": [
+        "Emi",
+        "Cai",
+        "Aki",
+        "Finn"
+      ],
+      "requirements": {
+        "Fern": {
+          "workers": [
+            "Cai",
+            "Emi",
+            "Finn"
+          ],
+          "slots": [
+            1,
+            2,
+            3
+          ]
+        },
+        "Aster": {
+          "workers": [
+            "Finn",
+            "Aki",
+            "Emi"
+          ],
+          "slots": [
+            3,
+            1,
+            2
+          ]
+        },
+        "Ginkgo": {
+          "workers": [
+            "Finn",
+            "Aki",
+            "Cai",
+            "Emi"
+          ],
+          "slots": [
+            3,
+            2,
+            1
+          ]
+        }
+      },
+      "precedes": [
+        [
+          "Aster",
+          "Fern"
+        ]
+      ],
+      "plans": [
+        {
+          "Fern": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Emi",
+            "slot": 2
+          },
+          "Ginkgo": {
+            "worker": "Finn",
+            "slot": 1
+          }
+        },
+        {
+          "Fern": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Aki",
+            "slot": 2
+          }
+        },
+        {
+          "Fern": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Cai",
+            "slot": 2
+          },
+          "Ginkgo": {
+            "worker": "Aki",
+            "slot": 1
+          }
+        },
+        {
+          "Fern": {
+            "worker": "Aki",
+            "slot": 2
+          },
+          "Aster": {
+            "worker": "Emi",
+            "slot": 1
+          },
+          "Ginkgo": {
+            "worker": "Emi",
+            "slot": 3
+          }
+        }
+      ]
+    },
+    "witness": {
+      "candidate_violations": [
+        [],
+        [
+          [
+            "precedence",
+            "Aster",
+            "Fern"
+          ]
+        ],
+        [
+          [
+            "worker",
+            "Aster"
+          ]
+        ],
+        [
+          [
+            "worker",
+            "Fern"
+          ]
+        ]
+      ],
+      "construction": "exchangeable proposals; target uniform after symmetric admissibility; every distractor violates one rule",
+      "candidate_violations_by_label": {
+        "A": [
+          [
+            "precedence",
+            "Aster",
+            "Fern"
+          ]
+        ],
+        "B": [],
+        "C": [
+          [
+            "worker",
+            "Fern"
+          ]
+        ],
+        "D": [
+          [
+            "worker",
+            "Aster"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "id": "schedule-easy-ja-008",
+    "family": "schedule",
+    "difficulty": "easy",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|schedule|easy|ja|8",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "架空の作業割当。各作業は時間枠1つを使う。すべての作業に許可された担当者と時間枠を割り当てる。同じ担当者は同じ時間枠に2つの作業を担当できない。前後関係 A→B は、Aの時間枠番号がBより厳密に小さいことを要求する。記載された全条件を満たす案は1つだけ。",
+        "allowed_assignments": {
+          "Hazel": {
+            "workers": [
+              "Hana",
+              "Bea",
+              "Dora"
+            ],
+            "slots": [
+              2,
+              3
+            ]
+          },
+          "Iris": {
+            "workers": [
+              "Emi",
+              "Dora",
+              "Bea",
+              "Hana"
+            ],
+            "slots": [
+              1,
+              3,
+              2
+            ]
+          },
+          "Ginkgo": {
+            "workers": [
+              "Bea",
+              "Hana",
+              "Emi",
+              "Dora"
+            ],
+            "slots": [
+              1,
+              2
+            ]
+          }
+        },
+        "precedence": []
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "全条件を満たす割当案はどれですか。",
+          "criteria": {
+            "A": {
+              "Hazel": {
+                "worker": "Hana",
+                "slot": 1
+              },
+              "Iris": {
+                "worker": "Hana",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Bea",
+                "slot": 1
+              }
+            },
+            "B": {
+              "Hazel": {
+                "worker": "Hana",
+                "slot": 3
+              },
+              "Iris": {
+                "worker": "Emi",
+                "slot": 2
+              },
+              "Ginkgo": {
+                "worker": "Bea",
+                "slot": 2
+              }
+            },
+            "C": {
+              "Hazel": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Iris": {
+                "worker": "Emi",
+                "slot": 1
+              },
+              "Ginkgo": {
+                "worker": "Bea",
+                "slot": 2
+              }
+            },
+            "D": {
+              "Hazel": {
+                "worker": "Bea",
+                "slot": 2
+              },
+              "Iris": {
+                "worker": "Bea",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Emi",
+                "slot": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "gold_choice": "B",
+    "gold_internal": 2,
+    "option_internal_order": [
+      0,
+      2,
+      3,
+      1
+    ],
+    "abstract": {
+      "workers": [
+        "Dora",
+        "Bea",
+        "Hana",
+        "Emi"
+      ],
+      "requirements": {
+        "Hazel": {
+          "workers": [
+            "Hana",
+            "Bea",
+            "Dora"
+          ],
+          "slots": [
+            2,
+            3
+          ]
+        },
+        "Iris": {
+          "workers": [
+            "Emi",
+            "Dora",
+            "Bea",
+            "Hana"
+          ],
+          "slots": [
+            1,
+            3,
+            2
+          ]
+        },
+        "Ginkgo": {
+          "workers": [
+            "Bea",
+            "Hana",
+            "Emi",
+            "Dora"
+          ],
+          "slots": [
+            1,
+            2
+          ]
+        }
+      },
+      "precedes": [],
+      "plans": [
+        {
+          "Hazel": {
+            "worker": "Hana",
+            "slot": 1
+          },
+          "Iris": {
+            "worker": "Hana",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Bea",
+            "slot": 1
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Bea",
+            "slot": 2
+          },
+          "Iris": {
+            "worker": "Bea",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Emi",
+            "slot": 3
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Hana",
+            "slot": 3
+          },
+          "Iris": {
+            "worker": "Emi",
+            "slot": 2
+          },
+          "Ginkgo": {
+            "worker": "Bea",
+            "slot": 2
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Iris": {
+            "worker": "Emi",
+            "slot": 1
+          },
+          "Ginkgo": {
+            "worker": "Bea",
+            "slot": 2
+          }
+        }
+      ]
+    },
+    "witness": {
+      "candidate_violations": [
+        [
+          [
+            "slot",
+            "Hazel"
+          ]
+        ],
+        [
+          [
+            "slot",
+            "Ginkgo"
+          ]
+        ],
+        [],
+        [
+          [
+            "worker",
+            "Hazel"
+          ]
+        ]
+      ],
+      "construction": "exchangeable proposals; target uniform after symmetric admissibility; every distractor violates one rule",
+      "candidate_violations_by_label": {
+        "A": [
+          [
+            "slot",
+            "Hazel"
+          ]
+        ],
+        "B": [],
+        "C": [
+          [
+            "worker",
+            "Hazel"
+          ]
+        ],
+        "D": [
+          [
+            "slot",
+            "Ginkgo"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "id": "schedule-medium-en-008",
+    "family": "schedule",
+    "difficulty": "medium",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|schedule|medium|en|8",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Fictional work assignment. Every job occupies one whole slot. Assign every job an allowed worker and slot. A worker cannot do two jobs in the same slot. Each precedence A→B requires A's slot number to be strictly smaller than B's. Exactly one proposed plan meets every written constraint.",
+        "allowed_assignments": {
+          "Fern": {
+            "workers": [
+              "Dora",
+              "Finn",
+              "Cai"
+            ],
+            "slots": [
+              3,
+              2,
+              1
+            ]
+          },
+          "Hazel": {
+            "workers": [
+              "Finn",
+              "Cai",
+              "Dora"
+            ],
+            "slots": [
+              1,
+              3,
+              2
+            ]
+          },
+          "Dahlia": {
+            "workers": [
+              "Dora",
+              "Emi",
+              "Cai"
+            ],
+            "slots": [
+              2,
+              3,
+              1
+            ]
+          },
+          "Ginkgo": {
+            "workers": [
+              "Finn",
+              "Cai",
+              "Emi"
+            ],
+            "slots": [
+              2,
+              1,
+              3
+            ]
+          },
+          "Aster": {
+            "workers": [
+              "Cai",
+              "Finn",
+              "Dora"
+            ],
+            "slots": [
+              2,
+              3,
+              1
+            ]
+          }
+        },
+        "precedence": [
+          [
+            "Fern",
+            "Ginkgo"
+          ]
+        ]
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Which assignment plan satisfies every constraint?",
+          "criteria": {
+            "A": {
+              "Fern": {
+                "worker": "Finn",
+                "slot": 2
+              },
+              "Hazel": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Dahlia": {
+                "worker": "Dora",
+                "slot": 1
+              },
+              "Ginkgo": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Dora",
+                "slot": 2
+              }
+            },
+            "B": {
+              "Fern": {
+                "worker": "Finn",
+                "slot": 1
+              },
+              "Hazel": {
+                "worker": "Dora",
+                "slot": 3
+              },
+              "Dahlia": {
+                "worker": "Finn",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Dora",
+                "slot": 2
+              }
+            },
+            "C": {
+              "Fern": {
+                "worker": "Dora",
+                "slot": 1
+              },
+              "Hazel": {
+                "worker": "Finn",
+                "slot": 2
+              },
+              "Dahlia": {
+                "worker": "Dora",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Finn",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Emi",
+                "slot": 1
+              }
+            },
+            "D": {
+              "Fern": {
+                "worker": "Dora",
+                "slot": 1
+              },
+              "Hazel": {
+                "worker": "Cai",
+                "slot": 1
+              },
+              "Dahlia": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Finn",
+                "slot": 2
+              },
+              "Aster": {
+                "worker": "Dora",
+                "slot": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "gold_choice": "D",
+    "gold_internal": 1,
+    "option_internal_order": [
+      0,
+      2,
+      3,
+      1
+    ],
+    "abstract": {
+      "workers": [
+        "Emi",
+        "Cai",
+        "Dora",
+        "Finn"
+      ],
+      "requirements": {
+        "Fern": {
+          "workers": [
+            "Dora",
+            "Finn",
+            "Cai"
+          ],
+          "slots": [
+            3,
+            2,
+            1
+          ]
+        },
+        "Hazel": {
+          "workers": [
+            "Finn",
+            "Cai",
+            "Dora"
+          ],
+          "slots": [
+            1,
+            3,
+            2
+          ]
+        },
+        "Dahlia": {
+          "workers": [
+            "Dora",
+            "Emi",
+            "Cai"
+          ],
+          "slots": [
+            2,
+            3,
+            1
+          ]
+        },
+        "Ginkgo": {
+          "workers": [
+            "Finn",
+            "Cai",
+            "Emi"
+          ],
+          "slots": [
+            2,
+            1,
+            3
+          ]
+        },
+        "Aster": {
+          "workers": [
+            "Cai",
+            "Finn",
+            "Dora"
+          ],
+          "slots": [
+            2,
+            3,
+            1
+          ]
+        }
+      },
+      "precedes": [
+        [
+          "Fern",
+          "Ginkgo"
+        ]
+      ],
+      "plans": [
+        {
+          "Fern": {
+            "worker": "Finn",
+            "slot": 2
+          },
+          "Hazel": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Dahlia": {
+            "worker": "Dora",
+            "slot": 1
+          },
+          "Ginkgo": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Dora",
+            "slot": 2
+          }
+        },
+        {
+          "Fern": {
+            "worker": "Dora",
+            "slot": 1
+          },
+          "Hazel": {
+            "worker": "Cai",
+            "slot": 1
+          },
+          "Dahlia": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Finn",
+            "slot": 2
+          },
+          "Aster": {
+            "worker": "Dora",
+            "slot": 3
+          }
+        },
+        {
+          "Fern": {
+            "worker": "Finn",
+            "slot": 1
+          },
+          "Hazel": {
+            "worker": "Dora",
+            "slot": 3
+          },
+          "Dahlia": {
+            "worker": "Finn",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Dora",
+            "slot": 2
+          }
+        },
+        {
+          "Fern": {
+            "worker": "Dora",
+            "slot": 1
+          },
+          "Hazel": {
+            "worker": "Finn",
+            "slot": 2
+          },
+          "Dahlia": {
+            "worker": "Dora",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Finn",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Emi",
+            "slot": 1
+          }
+        }
+      ]
+    },
+    "witness": {
+      "candidate_violations": [
+        [
+          [
+            "worker",
+            "Hazel"
+          ]
+        ],
+        [],
+        [
+          [
+            "worker",
+            "Dahlia"
+          ]
+        ],
+        [
+          [
+            "worker",
+            "Aster"
+          ]
+        ]
+      ],
+      "construction": "exchangeable proposals; target uniform after symmetric admissibility; every distractor violates one rule",
+      "candidate_violations_by_label": {
+        "A": [
+          [
+            "worker",
+            "Hazel"
+          ]
+        ],
+        "B": [
+          [
+            "worker",
+            "Dahlia"
+          ]
+        ],
+        "C": [
+          [
+            "worker",
+            "Aster"
+          ]
+        ],
+        "D": []
+      }
+    }
+  },
+  {
+    "id": "schedule-medium-ja-007",
+    "family": "schedule",
+    "difficulty": "medium",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|schedule|medium|ja|7",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "架空の作業割当。各作業は時間枠1つを使う。すべての作業に許可された担当者と時間枠を割り当てる。同じ担当者は同じ時間枠に2つの作業を担当できない。前後関係 A→B は、Aの時間枠番号がBより厳密に小さいことを要求する。記載された全条件を満たす案は1つだけ。",
+        "allowed_assignments": {
+          "Ginkgo": {
+            "workers": [
+              "Gus",
+              "Cai",
+              "Hana"
+            ],
+            "slots": [
+              1,
+              3,
+              2
+            ]
+          },
+          "Cedar": {
+            "workers": [
+              "Gus",
+              "Emi",
+              "Hana"
+            ],
+            "slots": [
+              1,
+              2,
+              3
+            ]
+          },
+          "Aster": {
+            "workers": [
+              "Gus",
+              "Emi",
+              "Cai"
+            ],
+            "slots": [
+              3,
+              2,
+              1
+            ]
+          },
+          "Dahlia": {
+            "workers": [
+              "Hana",
+              "Cai"
+            ],
+            "slots": [
+              1,
+              3,
+              2
+            ]
+          },
+          "Elm": {
+            "workers": [
+              "Hana",
+              "Emi",
+              "Cai"
+            ],
+            "slots": [
+              3,
+              1,
+              2
+            ]
+          }
+        },
+        "precedence": []
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "全条件を満たす割当案はどれですか。",
+          "criteria": {
+            "A": {
+              "Ginkgo": {
+                "worker": "Hana",
+                "slot": 1
+              },
+              "Cedar": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Gus",
+                "slot": 2
+              },
+              "Dahlia": {
+                "worker": "Hana",
+                "slot": 3
+              },
+              "Elm": {
+                "worker": "Emi",
+                "slot": 2
+              }
+            },
+            "B": {
+              "Ginkgo": {
+                "worker": "Cai",
+                "slot": 1
+              },
+              "Cedar": {
+                "worker": "Emi",
+                "slot": 2
+              },
+              "Aster": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Dahlia": {
+                "worker": "Cai",
+                "slot": 2
+              },
+              "Elm": {
+                "worker": "Gus",
+                "slot": 1
+              }
+            },
+            "C": {
+              "Ginkgo": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Cedar": {
+                "worker": "Hana",
+                "slot": 1
+              },
+              "Aster": {
+                "worker": "Gus",
+                "slot": 1
+              },
+              "Dahlia": {
+                "worker": "Emi",
+                "slot": 2
+              },
+              "Elm": {
+                "worker": "Emi",
+                "slot": 3
+              }
+            },
+            "D": {
+              "Ginkgo": {
+                "worker": "Cai",
+                "slot": 2
+              },
+              "Cedar": {
+                "worker": "Gus",
+                "slot": 1
+              },
+              "Aster": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Dahlia": {
+                "worker": "Cai",
+                "slot": 1
+              },
+              "Elm": {
+                "worker": "Hana",
+                "slot": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "gold_choice": "D",
+    "gold_internal": 2,
+    "option_internal_order": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "abstract": {
+      "workers": [
+        "Cai",
+        "Hana",
+        "Gus",
+        "Emi"
+      ],
+      "requirements": {
+        "Ginkgo": {
+          "workers": [
+            "Gus",
+            "Cai",
+            "Hana"
+          ],
+          "slots": [
+            1,
+            3,
+            2
+          ]
+        },
+        "Cedar": {
+          "workers": [
+            "Gus",
+            "Emi",
+            "Hana"
+          ],
+          "slots": [
+            1,
+            2,
+            3
+          ]
+        },
+        "Aster": {
+          "workers": [
+            "Gus",
+            "Emi",
+            "Cai"
+          ],
+          "slots": [
+            3,
+            2,
+            1
+          ]
+        },
+        "Dahlia": {
+          "workers": [
+            "Hana",
+            "Cai"
+          ],
+          "slots": [
+            1,
+            3,
+            2
+          ]
+        },
+        "Elm": {
+          "workers": [
+            "Hana",
+            "Emi",
+            "Cai"
+          ],
+          "slots": [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      "precedes": [],
+      "plans": [
+        {
+          "Ginkgo": {
+            "worker": "Cai",
+            "slot": 1
+          },
+          "Cedar": {
+            "worker": "Emi",
+            "slot": 2
+          },
+          "Aster": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Dahlia": {
+            "worker": "Cai",
+            "slot": 2
+          },
+          "Elm": {
+            "worker": "Gus",
+            "slot": 1
+          }
+        },
+        {
+          "Ginkgo": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Cedar": {
+            "worker": "Hana",
+            "slot": 1
+          },
+          "Aster": {
+            "worker": "Gus",
+            "slot": 1
+          },
+          "Dahlia": {
+            "worker": "Emi",
+            "slot": 2
+          },
+          "Elm": {
+            "worker": "Emi",
+            "slot": 3
+          }
+        },
+        {
+          "Ginkgo": {
+            "worker": "Cai",
+            "slot": 2
+          },
+          "Cedar": {
+            "worker": "Gus",
+            "slot": 1
+          },
+          "Aster": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Dahlia": {
+            "worker": "Cai",
+            "slot": 1
+          },
+          "Elm": {
+            "worker": "Hana",
+            "slot": 1
+          }
+        },
+        {
+          "Ginkgo": {
+            "worker": "Hana",
+            "slot": 1
+          },
+          "Cedar": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Gus",
+            "slot": 2
+          },
+          "Dahlia": {
+            "worker": "Hana",
+            "slot": 3
+          },
+          "Elm": {
+            "worker": "Emi",
+            "slot": 2
+          }
+        }
+      ]
+    },
+    "witness": {
+      "candidate_violations": [
+        [
+          [
+            "worker",
+            "Elm"
+          ]
+        ],
+        [
+          [
+            "worker",
+            "Dahlia"
+          ]
+        ],
+        [],
+        [
+          [
+            "worker",
+            "Cedar"
+          ]
+        ]
+      ],
+      "construction": "exchangeable proposals; target uniform after symmetric admissibility; every distractor violates one rule",
+      "candidate_violations_by_label": {
+        "A": [
+          [
+            "worker",
+            "Cedar"
+          ]
+        ],
+        "B": [
+          [
+            "worker",
+            "Elm"
+          ]
+        ],
+        "C": [
+          [
+            "worker",
+            "Dahlia"
+          ]
+        ],
+        "D": []
+      }
+    }
+  },
+  {
+    "id": "schedule-hard-en-058",
+    "family": "schedule",
+    "difficulty": "hard",
+    "language": "en",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|schedule|hard|en|58",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "Fictional work assignment. Every job occupies one whole slot. Assign every job an allowed worker and slot. A worker cannot do two jobs in the same slot. Each precedence A→B requires A's slot number to be strictly smaller than B's. Exactly one proposed plan meets every written constraint.",
+        "allowed_assignments": {
+          "Hazel": {
+            "workers": [
+              "Finn",
+              "Cai"
+            ],
+            "slots": [
+              3,
+              1
+            ]
+          },
+          "Elm": {
+            "workers": [
+              "Gus",
+              "Finn",
+              "Cai"
+            ],
+            "slots": [
+              3,
+              2,
+              1
+            ]
+          },
+          "Juniper": {
+            "workers": [
+              "Gus",
+              "Finn",
+              "Emi",
+              "Cai"
+            ],
+            "slots": [
+              3,
+              2
+            ]
+          },
+          "Dahlia": {
+            "workers": [
+              "Cai",
+              "Gus",
+              "Emi",
+              "Finn"
+            ],
+            "slots": [
+              1,
+              2,
+              3
+            ]
+          },
+          "Iris": {
+            "workers": [
+              "Finn",
+              "Gus",
+              "Cai"
+            ],
+            "slots": [
+              2,
+              3
+            ]
+          },
+          "Aster": {
+            "workers": [
+              "Emi",
+              "Cai",
+              "Finn",
+              "Gus"
+            ],
+            "slots": [
+              3,
+              2,
+              1
+            ]
+          },
+          "Birch": {
+            "workers": [
+              "Gus",
+              "Cai"
+            ],
+            "slots": [
+              1,
+              3,
+              2
+            ]
+          }
+        },
+        "precedence": []
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Which assignment plan satisfies every constraint?",
+          "criteria": {
+            "A": {
+              "Hazel": {
+                "worker": "Finn",
+                "slot": 3
+              },
+              "Elm": {
+                "worker": "Finn",
+                "slot": 2
+              },
+              "Juniper": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Dahlia": {
+                "worker": "Gus",
+                "slot": 3
+              },
+              "Iris": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Aster": {
+                "worker": "Gus",
+                "slot": 2
+              },
+              "Birch": {
+                "worker": "Cai",
+                "slot": 1
+              }
+            },
+            "B": {
+              "Hazel": {
+                "worker": "Finn",
+                "slot": 1
+              },
+              "Elm": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Juniper": {
+                "worker": "Finn",
+                "slot": 2
+              },
+              "Dahlia": {
+                "worker": "Emi",
+                "slot": 2
+              },
+              "Iris": {
+                "worker": "Gus",
+                "slot": 2
+              },
+              "Aster": {
+                "worker": "Gus",
+                "slot": 3
+              },
+              "Birch": {
+                "worker": "Cai",
+                "slot": 1
+              }
+            },
+            "C": {
+              "Hazel": {
+                "worker": "Gus",
+                "slot": 3
+              },
+              "Elm": {
+                "worker": "Finn",
+                "slot": 1
+              },
+              "Juniper": {
+                "worker": "Cai",
+                "slot": 3
+              },
+              "Dahlia": {
+                "worker": "Finn",
+                "slot": 3
+              },
+              "Iris": {
+                "worker": "Gus",
+                "slot": 2
+              },
+              "Aster": {
+                "worker": "Gus",
+                "slot": 1
+              },
+              "Birch": {
+                "worker": "Cai",
+                "slot": 2
+              }
+            },
+            "D": {
+              "Hazel": {
+                "worker": "Finn",
+                "slot": 1
+              },
+              "Elm": {
+                "worker": "Gus",
+                "slot": 3
+              },
+              "Juniper": {
+                "worker": "Finn",
+                "slot": 2
+              },
+              "Dahlia": {
+                "worker": "Finn",
+                "slot": 3
+              },
+              "Iris": {
+                "worker": "Cai",
+                "slot": 2
+              },
+              "Aster": {
+                "worker": "Gus",
+                "slot": 1
+              },
+              "Birch": {
+                "worker": "Cai",
+                "slot": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "gold_choice": "D",
+    "gold_internal": 1,
+    "option_internal_order": [
+      0,
+      3,
+      2,
+      1
+    ],
+    "abstract": {
+      "workers": [
+        "Emi",
+        "Finn",
+        "Gus",
+        "Cai"
+      ],
+      "requirements": {
+        "Hazel": {
+          "workers": [
+            "Finn",
+            "Cai"
+          ],
+          "slots": [
+            3,
+            1
+          ]
+        },
+        "Elm": {
+          "workers": [
+            "Gus",
+            "Finn",
+            "Cai"
+          ],
+          "slots": [
+            3,
+            2,
+            1
+          ]
+        },
+        "Juniper": {
+          "workers": [
+            "Gus",
+            "Finn",
+            "Emi",
+            "Cai"
+          ],
+          "slots": [
+            3,
+            2
+          ]
+        },
+        "Dahlia": {
+          "workers": [
+            "Cai",
+            "Gus",
+            "Emi",
+            "Finn"
+          ],
+          "slots": [
+            1,
+            2,
+            3
+          ]
+        },
+        "Iris": {
+          "workers": [
+            "Finn",
+            "Gus",
+            "Cai"
+          ],
+          "slots": [
+            2,
+            3
+          ]
+        },
+        "Aster": {
+          "workers": [
+            "Emi",
+            "Cai",
+            "Finn",
+            "Gus"
+          ],
+          "slots": [
+            3,
+            2,
+            1
+          ]
+        },
+        "Birch": {
+          "workers": [
+            "Gus",
+            "Cai"
+          ],
+          "slots": [
+            1,
+            3,
+            2
+          ]
+        }
+      },
+      "precedes": [],
+      "plans": [
+        {
+          "Hazel": {
+            "worker": "Finn",
+            "slot": 3
+          },
+          "Elm": {
+            "worker": "Finn",
+            "slot": 2
+          },
+          "Juniper": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Dahlia": {
+            "worker": "Gus",
+            "slot": 3
+          },
+          "Iris": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Aster": {
+            "worker": "Gus",
+            "slot": 2
+          },
+          "Birch": {
+            "worker": "Cai",
+            "slot": 1
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Finn",
+            "slot": 1
+          },
+          "Elm": {
+            "worker": "Gus",
+            "slot": 3
+          },
+          "Juniper": {
+            "worker": "Finn",
+            "slot": 2
+          },
+          "Dahlia": {
+            "worker": "Finn",
+            "slot": 3
+          },
+          "Iris": {
+            "worker": "Cai",
+            "slot": 2
+          },
+          "Aster": {
+            "worker": "Gus",
+            "slot": 1
+          },
+          "Birch": {
+            "worker": "Cai",
+            "slot": 3
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Gus",
+            "slot": 3
+          },
+          "Elm": {
+            "worker": "Finn",
+            "slot": 1
+          },
+          "Juniper": {
+            "worker": "Cai",
+            "slot": 3
+          },
+          "Dahlia": {
+            "worker": "Finn",
+            "slot": 3
+          },
+          "Iris": {
+            "worker": "Gus",
+            "slot": 2
+          },
+          "Aster": {
+            "worker": "Gus",
+            "slot": 1
+          },
+          "Birch": {
+            "worker": "Cai",
+            "slot": 2
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Finn",
+            "slot": 1
+          },
+          "Elm": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Juniper": {
+            "worker": "Finn",
+            "slot": 2
+          },
+          "Dahlia": {
+            "worker": "Emi",
+            "slot": 2
+          },
+          "Iris": {
+            "worker": "Gus",
+            "slot": 2
+          },
+          "Aster": {
+            "worker": "Gus",
+            "slot": 3
+          },
+          "Birch": {
+            "worker": "Cai",
+            "slot": 1
+          }
+        }
+      ]
+    },
+    "witness": {
+      "candidate_violations": [
+        [
+          [
+            "worker",
+            "Iris"
+          ]
+        ],
+        [],
+        [
+          [
+            "worker",
+            "Hazel"
+          ]
+        ],
+        [
+          [
+            "worker",
+            "Elm"
+          ]
+        ]
+      ],
+      "construction": "exchangeable proposals; target uniform after symmetric admissibility; every distractor violates one rule",
+      "candidate_violations_by_label": {
+        "A": [
+          [
+            "worker",
+            "Iris"
+          ]
+        ],
+        "B": [
+          [
+            "worker",
+            "Elm"
+          ]
+        ],
+        "C": [
+          [
+            "worker",
+            "Hazel"
+          ]
+        ],
+        "D": []
+      }
+    }
+  },
+  {
+    "id": "schedule-hard-ja-021",
+    "family": "schedule",
+    "difficulty": "hard",
+    "language": "ja",
+    "version": "private-decisions-v5",
+    "split": "test",
+    "independent_item": true,
+    "seed_key": "liquid-private-decisions-20260930-a7e4169f|schedule|hard|ja|21",
+    "payload": {
+      "model": "d1:free",
+      "state": {
+        "task": "架空の作業割当。各作業は時間枠1つを使う。すべての作業に許可された担当者と時間枠を割り当てる。同じ担当者は同じ時間枠に2つの作業を担当できない。前後関係 A→B は、Aの時間枠番号がBより厳密に小さいことを要求する。記載された全条件を満たす案は1つだけ。",
+        "allowed_assignments": {
+          "Hazel": {
+            "workers": [
+              "Hana",
+              "Emi",
+              "Gus",
+              "Bea"
+            ],
+            "slots": [
+              2,
+              1,
+              3
+            ]
+          },
+          "Juniper": {
+            "workers": [
+              "Hana",
+              "Emi",
+              "Bea",
+              "Gus"
+            ],
+            "slots": [
+              2,
+              1,
+              3
+            ]
+          },
+          "Fern": {
+            "workers": [
+              "Hana",
+              "Gus",
+              "Bea"
+            ],
+            "slots": [
+              3,
+              2,
+              1
+            ]
+          },
+          "Iris": {
+            "workers": [
+              "Gus",
+              "Hana",
+              "Bea"
+            ],
+            "slots": [
+              1,
+              3,
+              2
+            ]
+          },
+          "Cedar": {
+            "workers": [
+              "Hana",
+              "Gus"
+            ],
+            "slots": [
+              2,
+              3
+            ]
+          },
+          "Birch": {
+            "workers": [
+              "Hana",
+              "Emi",
+              "Gus"
+            ],
+            "slots": [
+              3,
+              2,
+              1
+            ]
+          },
+          "Ginkgo": {
+            "workers": [
+              "Bea",
+              "Gus",
+              "Hana",
+              "Emi"
+            ],
+            "slots": [
+              1,
+              2
+            ]
+          }
+        },
+        "precedence": [
+          [
+            "Fern",
+            "Cedar"
+          ],
+          [
+            "Juniper",
+            "Cedar"
+          ]
+        ]
+      },
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "全条件を満たす割当案はどれですか。",
+          "criteria": {
+            "A": {
+              "Hazel": {
+                "worker": "Emi",
+                "slot": 3
+              },
+              "Juniper": {
+                "worker": "Gus",
+                "slot": 1
+              },
+              "Fern": {
+                "worker": "Bea",
+                "slot": 1
+              },
+              "Iris": {
+                "worker": "Bea",
+                "slot": 2
+              },
+              "Cedar": {
+                "worker": "Hana",
+                "slot": 2
+              },
+              "Birch": {
+                "worker": "Hana",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Emi",
+                "slot": 2
+              }
+            },
+            "B": {
+              "Hazel": {
+                "worker": "Bea",
+                "slot": 2
+              },
+              "Juniper": {
+                "worker": "Emi",
+                "slot": 1
+              },
+              "Fern": {
+                "worker": "Hana",
+                "slot": 1
+              },
+              "Iris": {
+                "worker": "Gus",
+                "slot": 2
+              },
+              "Cedar": {
+                "worker": "Gus",
+                "slot": 3
+              },
+              "Birch": {
+                "worker": "Bea",
+                "slot": 1
+              },
+              "Ginkgo": {
+                "worker": "Emi",
+                "slot": 2
+              }
+            },
+            "C": {
+              "Hazel": {
+                "worker": "Gus",
+                "slot": 1
+              },
+              "Juniper": {
+                "worker": "Gus",
+                "slot": 2
+              },
+              "Fern": {
+                "worker": "Hana",
+                "slot": 1
+              },
+              "Iris": {
+                "worker": "Bea",
+                "slot": 1
+              },
+              "Cedar": {
+                "worker": "Hana",
+                "slot": 3
+              },
+              "Birch": {
+                "worker": "Emi",
+                "slot": 1
+              },
+              "Ginkgo": {
+                "worker": "Emi",
+                "slot": 3
+              }
+            },
+            "D": {
+              "Hazel": {
+                "worker": "Bea",
+                "slot": 2
+              },
+              "Juniper": {
+                "worker": "Hana",
+                "slot": 1
+              },
+              "Fern": {
+                "worker": "Bea",
+                "slot": 3
+              },
+              "Iris": {
+                "worker": "Hana",
+                "slot": 3
+              },
+              "Cedar": {
+                "worker": "Gus",
+                "slot": 2
+              },
+              "Birch": {
+                "worker": "Gus",
+                "slot": 3
+              },
+              "Ginkgo": {
+                "worker": "Bea",
+                "slot": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "gold_choice": "A",
+    "gold_internal": 1,
+    "option_internal_order": [
+      1,
+      0,
+      3,
+      2
+    ],
+    "abstract": {
+      "workers": [
+        "Emi",
+        "Bea",
+        "Hana",
+        "Gus"
+      ],
+      "requirements": {
+        "Hazel": {
+          "workers": [
+            "Hana",
+            "Emi",
+            "Gus",
+            "Bea"
+          ],
+          "slots": [
+            2,
+            1,
+            3
+          ]
+        },
+        "Juniper": {
+          "workers": [
+            "Hana",
+            "Emi",
+            "Bea",
+            "Gus"
+          ],
+          "slots": [
+            2,
+            1,
+            3
+          ]
+        },
+        "Fern": {
+          "workers": [
+            "Hana",
+            "Gus",
+            "Bea"
+          ],
+          "slots": [
+            3,
+            2,
+            1
+          ]
+        },
+        "Iris": {
+          "workers": [
+            "Gus",
+            "Hana",
+            "Bea"
+          ],
+          "slots": [
+            1,
+            3,
+            2
+          ]
+        },
+        "Cedar": {
+          "workers": [
+            "Hana",
+            "Gus"
+          ],
+          "slots": [
+            2,
+            3
+          ]
+        },
+        "Birch": {
+          "workers": [
+            "Hana",
+            "Emi",
+            "Gus"
+          ],
+          "slots": [
+            3,
+            2,
+            1
+          ]
+        },
+        "Ginkgo": {
+          "workers": [
+            "Bea",
+            "Gus",
+            "Hana",
+            "Emi"
+          ],
+          "slots": [
+            1,
+            2
+          ]
+        }
+      },
+      "precedes": [
+        [
+          "Fern",
+          "Cedar"
+        ],
+        [
+          "Juniper",
+          "Cedar"
+        ]
+      ],
+      "plans": [
+        {
+          "Hazel": {
+            "worker": "Bea",
+            "slot": 2
+          },
+          "Juniper": {
+            "worker": "Emi",
+            "slot": 1
+          },
+          "Fern": {
+            "worker": "Hana",
+            "slot": 1
+          },
+          "Iris": {
+            "worker": "Gus",
+            "slot": 2
+          },
+          "Cedar": {
+            "worker": "Gus",
+            "slot": 3
+          },
+          "Birch": {
+            "worker": "Bea",
+            "slot": 1
+          },
+          "Ginkgo": {
+            "worker": "Emi",
+            "slot": 2
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Emi",
+            "slot": 3
+          },
+          "Juniper": {
+            "worker": "Gus",
+            "slot": 1
+          },
+          "Fern": {
+            "worker": "Bea",
+            "slot": 1
+          },
+          "Iris": {
+            "worker": "Bea",
+            "slot": 2
+          },
+          "Cedar": {
+            "worker": "Hana",
+            "slot": 2
+          },
+          "Birch": {
+            "worker": "Hana",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Emi",
+            "slot": 2
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Bea",
+            "slot": 2
+          },
+          "Juniper": {
+            "worker": "Hana",
+            "slot": 1
+          },
+          "Fern": {
+            "worker": "Bea",
+            "slot": 3
+          },
+          "Iris": {
+            "worker": "Hana",
+            "slot": 3
+          },
+          "Cedar": {
+            "worker": "Gus",
+            "slot": 2
+          },
+          "Birch": {
+            "worker": "Gus",
+            "slot": 3
+          },
+          "Ginkgo": {
+            "worker": "Bea",
+            "slot": 1
+          }
+        },
+        {
+          "Hazel": {
+            "worker": "Gus",
+            "slot": 1
+          },
+          "Juniper": {
+            "worker": "Gus",
+            "slot": 2
+          },
+          "Fern": {
+            "worker": "Hana",
+            "slot": 1
+          },
+          "Iris": {
+            "worker": "Bea",
+            "slot": 1
+          },
+          "Cedar": {
+            "worker": "Hana",
+            "slot": 3
+          },
+          "Birch": {
+            "worker": "Emi",
+            "slot": 1
+          },
+          "Ginkgo": {
+            "worker": "Emi",
+            "slot": 3
+          }
+        }
+      ]
+    },
+    "witness": {
+      "candidate_violations": [
+        [
+          [
+            "worker",
+            "Birch"
+          ]
+        ],
+        [],
+        [
+          [
+            "precedence",
+            "Fern",
+            "Cedar"
+          ]
+        ],
+        [
+          [
+            "slot",
+            "Ginkgo"
+          ]
+        ]
+      ],
+      "construction": "exchangeable proposals; target uniform after symmetric admissibility; every distractor violates one rule",
+      "candidate_violations_by_label": {
+        "A": [],
+        "B": [
+          [
+            "worker",
+            "Birch"
+          ]
+        ],
+        "C": [
+          [
+            "slot",
+            "Ginkgo"
+          ]
+        ],
+        "D": [
+          [
+            "precedence",
+            "Fern",
+            "Cedar"
+          ]
+        ]
+      }
+    }
+  }
+]

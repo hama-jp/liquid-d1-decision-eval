@@ -1,0 +1,11 @@
+{
+  "suite": "basic",
+  "planned": 61,
+  "attempted": 24,
+  "reason": "service_error",
+  "http_statuses": {
+    "200": 23,
+    "429": 1
+  },
+  "contract_failures": 0
+}

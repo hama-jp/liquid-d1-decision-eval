@@ -1,0 +1,122 @@
+{
+  "all_passed": true,
+  "checks": {
+    "independent_oracle_agreement": 672,
+    "unique_choices": 672
+  },
+  "canonical": 552,
+  "variants": 120,
+  "position_counts": {
+    "policy/hard/ja": {
+      "A": 15,
+      "C": 15,
+      "B": 15,
+      "D": 15
+    },
+    "temporal/easy/en": {
+      "D": 4,
+      "B": 4,
+      "C": 4,
+      "A": 4
+    },
+    "schedule/easy/ja": {
+      "B": 4,
+      "C": 4,
+      "D": 4,
+      "A": 4
+    },
+    "temporal/hard/ja": {
+      "B": 15,
+      "A": 15,
+      "C": 15,
+      "D": 15
+    },
+    "temporal/hard/en": {
+      "D": 15,
+      "C": 15,
+      "A": 15,
+      "B": 15
+    },
+    "schedule/hard/ja": {
+      "A": 15,
+      "C": 15,
+      "D": 15,
+      "B": 15
+    },
+    "policy/hard/en": {
+      "C": 15,
+      "B": 15,
+      "D": 15,
+      "A": 15
+    },
+    "schedule/hard/en": {
+      "D": 15,
+      "A": 15,
+      "C": 15,
+      "B": 15
+    },
+    "temporal/medium/ja": {
+      "B": 4,
+      "A": 4,
+      "D": 4,
+      "C": 4
+    },
+    "schedule/medium/ja": {
+      "D": 4,
+      "C": 4,
+      "A": 4,
+      "B": 4
+    },
+    "temporal/easy/ja": {
+      "B": 4,
+      "C": 4,
+      "D": 4,
+      "A": 4
+    },
+    "policy/easy/ja": {
+      "B": 4,
+      "D": 4,
+      "C": 4,
+      "A": 4
+    },
+    "schedule/easy/en": {
+      "B": 4,
+      "D": 4,
+      "A": 4,
+      "C": 4
+    },
+    "policy/medium/ja": {
+      "B": 4,
+      "C": 4,
+      "D": 4,
+      "A": 4
+    },
+    "policy/easy/en": {
+      "C": 4,
+      "B": 4,
+      "A": 4,
+      "D": 4
+    },
+    "policy/medium/en": {
+      "A": 4,
+      "B": 4,
+      "D": 4,
+      "C": 4
+    },
+    "temporal/medium/en": {
+      "D": 4,
+      "B": 4,
+      "C": 4,
+      "A": 4
+    },
+    "schedule/medium/en": {
+      "D": 4,
+      "A": 4,
+      "C": 4,
+      "B": 4
+    }
+  },
+  "version": "private-decisions-v5",
+  "master_seed": "liquid-private-decisions-20260930-a7e4169f",
+  "sha256": "ae041f64200422422f8cb1b3307c579a697ed10ca11e9b528bec4e7e1d0f6f60"
+}

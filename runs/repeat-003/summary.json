@@ -1,0 +1,14 @@
+{
+  "phase": "hard_repeat",
+  "planned": 60,
+  "todo": 28,
+  "parallelism": 1,
+  "interval_seconds": 5.0,
+  "timeout_seconds": 30,
+  "max_attempts_per_item": 3,
+  "started_at": "2026-09-30T13:08:29.998906+00:00",
+  "completed": 11,
+  "attempts": 15,
+  "reason": "service_failure_three_attempts",
+  "ended_at": "2026-09-30T13:09:58.751513+00:00"
+}

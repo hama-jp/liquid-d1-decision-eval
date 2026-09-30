@@ -1,0 +1,113 @@
+{
+  "api_attempts": 853,
+  "http_statuses": {
+    "200": 826,
+    "429": 15,
+    "timeout": 6,
+    "422": 4,
+    "503": 1,
+    "502": 1
+  },
+  "transport_error_types": {
+    "TimeoutError": 6
+  },
+  "http200": 826,
+  "normal_contract_failures": [],
+  "models": [
+    "d1:free"
+  ],
+  "usage": {
+    "input_tokens": 729184,
+    "output_tokens": 0,
+    "missing_usage": 0
+  },
+  "rtt_reference": {
+    "n": 826,
+    "median_ms": 359.4400205183774,
+    "p95_ms": 1231.020611943677
+  },
+  "basic": {
+    "problem": {
+      "correct": 24,
+      "n": 24
+    },
+    "department": {
+      "correct": 24,
+      "n": 24
+    },
+    "urgency": {
+      "correct": 23,
+      "n": 24
+    }
+  },
+  "diagnostics": {
+    "problem": {
+      "correct": 5,
+      "n": 6
+    },
+    "department": {
+      "correct": 6,
+      "n": 6
+    },
+    "urgency": {
+      "correct": 5,
+      "n": 6
+    }
+  },
+  "static": {
+    "tactical": {
+      "n": 12,
+      "correct": 12,
+      "same_as_historical_jev": null
+    },
+    "tactical_reverse": {
+      "n": 12,
+      "correct": 12,
+      "same_as_historical_jev": null
+    },
+    "historical": {
+      "n": 12,
+      "correct": null,
+      "same_as_historical_jev": 7
+    }
+  },
+  "repeat": [
+    {
+      "family": "policy",
+      "n": 20,
+      "flips": 1,
+      "max_probability_change": 0.14731860049418105
+    },
+    {
+      "family": "temporal",
+      "n": 20,
+      "flips": 1,
+      "max_probability_change": 0.11622772374337045
+    },
+    {
+      "family": "schedule",
+      "n": 20,
+      "flips": 1,
+      "max_probability_change": 0.2480012113133932
+    }
+  ],
+  "repeat_completed": 60,
+  "repeat_planned": 60,
+  "confidence_subsets": [
+    {
+      "threshold": 0.9,
+      "n": 107,
+      "errors": 25
+    },
+    {
+      "threshold": 0.95,
+      "n": 73,
+      "errors": 12
+    },
+    {
+      "threshold": 0.99,
+      "n": 32,
+      "errors": 2
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "suite": "smoke",
+  "planned": 1,
+  "attempted": 1,
+  "reason": "completed",
+  "http_statuses": {
+    "200": 1
+  },
+  "contract_failures": 0
+}

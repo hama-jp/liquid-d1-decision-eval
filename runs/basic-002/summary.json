@@ -1,0 +1,10 @@
+{
+  "suite": "basic",
+  "planned": 38,
+  "attempted": 1,
+  "reason": "service_error",
+  "http_statuses": {
+    "None": 1
+  },
+  "contract_failures": 0
+}

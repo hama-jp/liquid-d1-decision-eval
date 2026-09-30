@@ -1,0 +1,287 @@
+{
+  "created_at": "2026-09-30T13:59:58.207913+00:00",
+  "api_attempts": 853,
+  "http_statuses": {
+    "200": 826,
+    "429": 15,
+    "timeout": 6,
+    "422": 4,
+    "503": 1,
+    "502": 1
+  },
+  "transport_error_types": {
+    "TimeoutError": 6
+  },
+  "http200": 826,
+  "normal_contract_failures": [],
+  "models": [
+    "d1:free"
+  ],
+  "usage": {
+    "input_tokens": 729184,
+    "output_tokens": 0,
+    "missing_usage": 0
+  },
+  "rtt_reference": {
+    "n": 826,
+    "median_ms": 359.4400205183774,
+    "p95_ms": 1231.020611943677
+  },
+  "basic": {
+    "problem": {
+      "correct": 24,
+      "n": 24
+    },
+    "department": {
+      "correct": 24,
+      "n": 24
+    },
+    "urgency": {
+      "correct": 23,
+      "n": 24
+    }
+  },
+  "diagnostics": {
+    "problem": {
+      "correct": 5,
+      "n": 6
+    },
+    "department": {
+      "correct": 6,
+      "n": 6
+    },
+    "urgency": {
+      "correct": 5,
+      "n": 6
+    }
+  },
+  "static": {
+    "tactical": {
+      "n": 12,
+      "correct": 12,
+      "same_as_historical_jev": null
+    },
+    "tactical_reverse": {
+      "n": 12,
+      "correct": 12,
+      "same_as_historical_jev": null
+    },
+    "historical": {
+      "n": 12,
+      "correct": null,
+      "same_as_historical_jev": 7
+    }
+  },
+  "repeat": [
+    {
+      "family": "policy",
+      "n": 20,
+      "flips": 1,
+      "max_probability_change": 0.14731860049418105
+    },
+    {
+      "family": "temporal",
+      "n": 20,
+      "flips": 1,
+      "max_probability_change": 0.11622772374337045
+    },
+    {
+      "family": "schedule",
+      "n": 20,
+      "flips": 1,
+      "max_probability_change": 0.2480012113133932
+    }
+  ],
+  "repeat_completed": 60,
+  "repeat_planned": 60,
+  "confidence_subsets": [
+    {
+      "threshold": 0.9,
+      "n": 107,
+      "errors": 25
+    },
+    {
+      "threshold": 0.95,
+      "n": 73,
+      "errors": 12
+    },
+    {
+      "threshold": 0.99,
+      "n": 32,
+      "errors": 2
+    }
+  ],
+  "primary_frozen_hash_checks": {
+    "history.py": true,
+    "client.py": true,
+    "run_suite.py": true,
+    "hard_oracle.py": true,
+    "hardbench.py": true,
+    "dataset/private-decisions-v5/validation.json": true,
+    "dataset/private-decisions-v5/items.jsonl": true,
+    "dataset/private-decisions-v5/review-examples.json": true,
+    "dataset/private-decisions-v5/public-inputs.jsonl": true
+  },
+  "runs": [
+    {
+      "suite": "basic",
+      "planned": 61,
+      "attempted": 24,
+      "reason": "service_error",
+      "http_statuses": {
+        "200": 23,
+        "429": 1
+      },
+      "contract_failures": 0,
+      "name": "basic-001"
+    },
+    {
+      "suite": "basic",
+      "planned": 38,
+      "attempted": 1,
+      "reason": "service_error",
+      "http_statuses": {
+        "None": 1
+      },
+      "contract_failures": 0,
+      "name": "basic-002"
+    },
+    {
+      "suite": "basic",
+      "planned_items": 61,
+      "previously_completed": 23,
+      "todo": 38,
+      "interval_after_response_seconds": 1.0,
+      "request_timeout_seconds": 30,
+      "max_attempts_per_item": 3,
+      "parallelism": 1,
+      "score_policy": "first HTTP200 only; never retry a model error",
+      "started_at": "2026-09-30T12:21:01.724902+00:00",
+      "completed_in_run": 38,
+      "attempts": 41,
+      "reason": "completed",
+      "ended_at": "2026-09-30T12:22:20.076876+00:00",
+      "name": "basic-003"
+    },
+    {
+      "suite": "hard",
+      "planned_items": 672,
+      "previously_completed": 0,
+      "todo": 672,
+      "interval_after_response_seconds": 1.0,
+      "request_timeout_seconds": 30,
+      "max_attempts_per_item": 3,
+      "parallelism": 1,
+      "score_policy": "first HTTP200 only; never retry a model error",
+      "started_at": "2026-09-30T12:33:13.398998+00:00",
+      "completed_in_run": 672,
+      "attempts": 673,
+      "reason": "completed",
+      "ended_at": "2026-09-30T12:49:42.546857+00:00",
+      "name": "hard-001"
+    },
+    {
+      "phase": "hard_repeat",
+      "planned": 60,
+      "todo": 60,
+      "parallelism": 1,
+      "interval_seconds": 1,
+      "timeout_seconds": 30,
+      "max_attempts_per_item": 3,
+      "started_at": "2026-09-30T12:51:21.305858+00:00",
+      "completed": 0,
+      "attempts": 3,
+      "reason": "service_failure_three_attempts",
+      "ended_at": "2026-09-30T12:52:36.574258+00:00",
+      "name": "repeat-001"
+    },
+    {
+      "phase": "hard_repeat",
+      "planned": 60,
+      "todo": 60,
+      "parallelism": 1,
+      "interval_seconds": 1,
+      "timeout_seconds": 30,
+      "max_attempts_per_item": 3,
+      "started_at": "2026-09-30T13:00:50.790791+00:00",
+      "completed": 32,
+      "attempts": 39,
+      "reason": "service_failure_three_attempts",
+      "ended_at": "2026-09-30T13:02:59.517203+00:00",
+      "name": "repeat-002"
+    },
+    {
+      "phase": "hard_repeat",
+      "planned": 60,
+      "todo": 28,
+      "parallelism": 1,
+      "interval_seconds": 5.0,
+      "timeout_seconds": 30,
+      "max_attempts_per_item": 3,
+      "started_at": "2026-09-30T13:08:29.998906+00:00",
+      "completed": 11,
+      "attempts": 15,
+      "reason": "service_failure_three_attempts",
+      "ended_at": "2026-09-30T13:09:58.751513+00:00",
+      "name": "repeat-003"
+    },
+    {
+      "phase": "hard_repeat",
+      "planned": 60,
+      "todo": 17,
+      "parallelism": 1,
+      "interval_seconds": 15.0,
+      "timeout_seconds": 30,
+      "max_attempts_per_item": 3,
+      "started_at": "2026-09-30T13:15:06.704807+00:00",
+      "completed": 4,
+      "attempts": 7,
+      "reason": "service_failure_three_attempts",
+      "ended_at": "2026-09-30T13:18:17.784716+00:00",
+      "name": "repeat-004"
+    },
+    {
+      "phase": "hard_repeat",
+      "planned": 60,
+      "todo": 13,
+      "parallelism": 1,
+      "interval_seconds": 15.0,
+      "timeout_seconds": 90.0,
+      "max_attempts_per_item": 3,
+      "started_at": "2026-09-30T13:22:22.482465+00:00",
+      "completed": 13,
+      "attempts": 13,
+      "reason": "completed",
+      "ended_at": "2026-09-30T13:25:54.307661+00:00",
+      "name": "repeat-005"
+    },
+    {
+      "suite": "smoke",
+      "planned": 1,
+      "attempted": 1,
+      "reason": "completed",
+      "http_statuses": {
+        "200": 1
+      },
+      "contract_failures": 0,
+      "name": "smoke-001"
+    },
+    {
+      "suite": "static",
+      "planned_items": 36,
+      "previously_completed": 0,
+      "todo": 36,
+      "interval_after_response_seconds": 1.0,
+      "request_timeout_seconds": 30,
+      "max_attempts_per_item": 3,
+      "parallelism": 1,
+      "score_policy": "first HTTP200 only; never retry a model error",
+      "started_at": "2026-09-30T12:24:54.764465+00:00",
+      "completed_in_run": 36,
+      "attempts": 36,
+      "reason": "completed",
+      "ended_at": "2026-09-30T12:26:12.194530+00:00",
+      "name": "static-001"
+    }
+  ]
+}

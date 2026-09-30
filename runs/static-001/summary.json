@@ -1,0 +1,16 @@
+{
+  "suite": "static",
+  "planned_items": 36,
+  "previously_completed": 0,
+  "todo": 36,
+  "interval_after_response_seconds": 1.0,
+  "request_timeout_seconds": 30,
+  "max_attempts_per_item": 3,
+  "parallelism": 1,
+  "score_policy": "first HTTP200 only; never retry a model error",
+  "started_at": "2026-09-30T12:24:54.764465+00:00",
+  "completed_in_run": 36,
+  "attempts": 36,
+  "reason": "completed",
+  "ended_at": "2026-09-30T12:26:12.194530+00:00"
+}
